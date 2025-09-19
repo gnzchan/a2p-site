@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# A2P 10DLC Compliant Website Template
 
-## Getting Started
+A Next.js template for businesses sending SMS messages under A2P 10DLC regulations. Fork this repo, update `config.ts`, and deploy.
 
-First, run the development server:
+## Quick Start
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+1. **Fork this repository**
+2. **Clone your fork**
+3. **Install dependencies**: `bun install`
+4. **Update `config.ts`** with your business info
+5. **Run**: `bun dev`
+6. **Deploy** to Vercel
+
+## Configuration
+
+Edit `config.ts`:
+
+```typescript
+export const config = {
+  companyName: "Your Company LLC",
+  businessType: "LLC",
+  industry: "Your Industry",
+  phone: "(555) 123-4567",
+  email: "support@yourcompany.com",
+  domain: "yourcompany.com",
+  smsBrand: "Your Brand Alerts",
+  useCase: "order updates and promotional offers",
+  messageFrequency: "1-3 messages per week",
+  address: {
+    street: "123 Your Street",
+    suite: "Suite 100",
+    city: "Your City",
+    state: "NY",
+    zip: "10001",
+    country: "United States",
+  },
+  businessHours: {
+    weekdays: "9:00 AM - 6:00 PM EST",
+    saturday: "10:00 AM - 4:00 PM EST",
+    sunday: "Closed",
+  },
+  legal: {
+    lastUpdated: "December 1, 2024",
+  },
+};
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Pages Included
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Homepage** - Business overview
+- **SMS Opt-In** - Compliant opt-in form
+- **Sample Messages** - SMS examples
+- **Privacy Policy** - A2P compliant
+- **Terms of Service** - SMS terms
+- **Contact** - Business contact info
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## A2P 10DLC Compliance
 
-## Learn More
+✅ Explicit opt-in consent  
+✅ Required disclosures (frequency, rates, opt-out)  
+✅ Business name in messages  
+✅ "Reply STOP to unsubscribe"  
+✅ "Text HELP for help"  
+✅ Privacy protection statement
 
-To learn more about Next.js, take a look at the following resources:
+## Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Next.js 15 + React 19 + TypeScript
+- Tailwind CSS + shadcn/ui
+- Bun (or npm/yarn)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+**Vercel (recommended)**: Connect GitHub repo → Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Other platforms**: Any Next.js-compatible platform
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Pre-Deployment Checklist
+
+- [ ] Update all info in `config.ts`
+- [ ] Domain matches business name
+- [ ] HTTPS enabled
+- [ ] Contact info consistent
+- [ ] Legal review of privacy policy/terms
+
+## Resources
+
+- [Twilio A2P 10DLC Guide](https://www.twilio.com/docs/messaging/a2p-10dlc)
+- [CTIA Guidelines](https://www.ctia.org/)
+- [Next.js Docs](https://nextjs.org/docs)
+
+## Legal Disclaimer
+
+This template provides a starting point for A2P 10DLC compliance. Consult legal counsel for your specific use case.
+
+---
+
+**Need help?** Check `SITE_REQUIREMENTS.md` for detailed compliance requirements.
