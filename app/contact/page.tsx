@@ -1,8 +1,8 @@
 "use client";
 
-import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Footer } from "@/components/footer";
+import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,8 +10,6 @@ import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 import { useState } from "react";
 import { config, formatFullAddress } from "../../config";
-import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -145,9 +143,7 @@ export default function Contact() {
                     <h3 className="text-base font-medium text-foreground mb-1">
                       Phone
                     </h3>
-                    <p className="text-muted-foreground">
-                      {config.phone}
-                    </p>
+                    <p className="text-muted-foreground">{config.phone}</p>
                   </div>
                 </div>
 
@@ -171,43 +167,8 @@ export default function Contact() {
                     <h3 className="text-base font-medium text-foreground mb-1">
                       Email
                     </h3>
-                    <p className="text-muted-foreground">
-                      {config.email}
-                    </p>
+                    <p className="text-muted-foreground">{config.email}</p>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Business Hours */}
-            <div>
-              <h2 className="text-2xl font-semibold tracking-tight text-foreground mb-8">
-                Business Hours
-              </h2>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">
-                    Monday - Friday
-                  </span>
-                  <span className="text-foreground font-medium">
-                    {config.businessHours.weekdays}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">
-                    Saturday
-                  </span>
-                  <span className="text-foreground font-medium">
-                    {config.businessHours.saturday}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">
-                    Sunday
-                  </span>
-                  <span className="text-foreground font-medium">
-                    {config.businessHours.sunday}
-                  </span>
                 </div>
               </div>
             </div>
@@ -222,7 +183,12 @@ export default function Contact() {
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-3">
-                    <Label htmlFor="name" className="text-sm font-medium text-foreground">Full Name *</Label>
+                    <Label
+                      htmlFor="name"
+                      className="text-sm font-medium text-foreground"
+                    >
+                      Full Name *
+                    </Label>
                     <Input
                       type="text"
                       id="name"
@@ -234,7 +200,12 @@ export default function Contact() {
                     />
                   </div>
                   <div className="space-y-3">
-                    <Label htmlFor="email" className="text-sm font-medium text-foreground">Email Address *</Label>
+                    <Label
+                      htmlFor="email"
+                      className="text-sm font-medium text-foreground"
+                    >
+                      Email Address *
+                    </Label>
                     <Input
                       type="email"
                       id="email"
@@ -249,7 +220,12 @@ export default function Contact() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-3">
-                    <Label htmlFor="phone" className="text-sm font-medium text-foreground">Phone Number</Label>
+                    <Label
+                      htmlFor="phone"
+                      className="text-sm font-medium text-foreground"
+                    >
+                      Phone Number
+                    </Label>
                     <Input
                       type="tel"
                       id="phone"
@@ -260,7 +236,12 @@ export default function Contact() {
                     />
                   </div>
                   <div className="space-y-3">
-                    <Label htmlFor="subject" className="text-sm font-medium text-foreground">Subject *</Label>
+                    <Label
+                      htmlFor="subject"
+                      className="text-sm font-medium text-foreground"
+                    >
+                      Subject *
+                    </Label>
                     <Input
                       type="text"
                       id="subject"
@@ -274,7 +255,12 @@ export default function Contact() {
                 </div>
 
                 <div className="space-y-3">
-                  <Label htmlFor="message" className="text-sm font-medium text-foreground">Message *</Label>
+                  <Label
+                    htmlFor="message"
+                    className="text-sm font-medium text-foreground"
+                  >
+                    Message *
+                  </Label>
                   <Textarea
                     id="message"
                     name="message"
@@ -295,9 +281,10 @@ export default function Contact() {
                     </p>
                     <p className="text-muted-foreground">
                       By checking this box, you give consent to{" "}
-                      <span className="font-medium">"{config.smsBrand}"</span> to send SMS text
-                      messages for <span className="font-medium">{config.useCase}</span> according
-                      to our{" "}
+                      <span className="font-medium">"{config.smsBrand}"</span>{" "}
+                      to send SMS text messages for{" "}
+                      <span className="font-medium">{config.useCase}</span>{" "}
+                      according to our{" "}
                       <Link
                         href="/terms"
                         className="text-foreground hover:underline font-medium"
@@ -314,8 +301,8 @@ export default function Contact() {
                       .
                     </p>
                     <p className="text-muted-foreground">
-                      Message frequency varies. Standard message and data
-                      rates may apply.
+                      Message frequency varies. Standard message and data rates
+                      may apply.
                     </p>
                     <p className="text-muted-foreground">
                       For HELP, text {config.phone}.
@@ -360,7 +347,6 @@ export default function Contact() {
           </div>
         </div>
       </main>
-
 
       <Footer />
     </div>
