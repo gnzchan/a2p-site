@@ -17,10 +17,10 @@ export const metadata: Metadata = {
   description: "Text and Voice Communication for Real Estate Professionals",
   keywords:
     "A2P 10DLC, SMS compliance, technology solutions, business communications",
-  authors: [{ name: "Smart Reply LLC" }],
+  authors: [{ name: "Reply Smart LLC" }],
   openGraph: {
     title:
-      "Smart Reply LLC - Text and Voice Communication for Real Estate Professionals",
+      "Reply Smart LLC - Text and Voice Communication for Real Estate Professionals",
     description: "Text and Voice Communication for Real Estate Professionals",
     type: "website",
     locale: "en_US",

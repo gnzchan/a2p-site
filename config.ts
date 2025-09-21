@@ -3,7 +3,7 @@
 
 export const config = {
   // Business Identity
-  companyName: "Smart Reply LLC",
+  companyName: "Reply Smart LLC",
   businessType: "LLC",
   industry: "Technology Solutions",
 
@@ -16,11 +16,11 @@ export const config = {
     country: "USA",
   },
   phone: "703-919-9426",
-  email: "support@smartreply.com",
-  domain: "acmesolutions.com",
+  email: "support@replysmart.ai",
+  domain: "replysmart.ai",
 
   // SMS Service Details
-  smsBrand: "Smart Reply",
+  smsBrand: "Reply Smart",
   useCase: "Text and Voice Communication for Real Estate Professionals",
   messageFrequency: "Based on the use case",
 
