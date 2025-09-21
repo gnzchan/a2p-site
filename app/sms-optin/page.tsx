@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 import { useState } from "react";
+import { toast, Toaster } from "sonner";
 import {
   config,
   getConsentCheckboxText,
@@ -22,17 +23,32 @@ export default function SMSOptIn() {
     email: "",
     consent: false,
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.consent) {
-      alert("Please check the consent box to continue.");
+      toast.error("Please check the consent box to continue.");
       return;
     }
-    // Here you would typically send the data to your backend
-    alert(
-      `Thank you for subscribing! You will receive SMS messages from ${config.smsBrand}.`
-    );
+
+    setIsSubmitting(true);
+    toast.loading("Processing your subscription...");
+
+    // Simulate async behavior
+    setTimeout(() => {
+      toast.dismiss();
+      toast.success(`Thank you for subscribing! You will receive SMS messages from ${config.smsBrand}.`);
+
+      // Clear the form
+      setFormData({
+        fullName: "",
+        phoneNumber: "",
+        email: "",
+        consent: false,
+      });
+      setIsSubmitting(false);
+    }, 3000);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -176,9 +192,9 @@ export default function SMSOptIn() {
               <Button
                 type="submit"
                 className="w-full h-12 rounded-full font-medium text-base"
-                disabled={!formData.consent}
+                disabled={!formData.consent || isSubmitting}
               >
-                Subscribe to SMS Updates
+                {isSubmitting ? "Processing..." : "Subscribe to SMS Updates"}
               </Button>
             </div>
           </form>
@@ -200,8 +216,8 @@ export default function SMSOptIn() {
         </div>
       </main>
 
-
       <Footer />
+      <Toaster position="top-center" richColors />
     </div>
   );
 }
