@@ -1,9 +1,11 @@
 "use client";
 
+import { Footer } from "@/components/footer";
+import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 import { useState } from "react";
 import { toast, Toaster } from "sonner";
@@ -13,8 +15,6 @@ import {
   getHelpText,
   getStopText,
 } from "../../config";
-import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
 
 export default function SMSOptIn() {
   const [formData, setFormData] = useState({
@@ -38,7 +38,9 @@ export default function SMSOptIn() {
     // Simulate async behavior
     setTimeout(() => {
       toast.dismiss();
-      toast.success(`Thank you for subscribing! You will receive SMS messages from ${config.smsBrand}.`);
+      toast.success(
+        `Thank you for subscribing! You will receive SMS messages from ${config.smsBrand}.`
+      );
 
       // Clear the form
       setFormData({
@@ -75,7 +77,6 @@ export default function SMSOptIn() {
         </div>
 
         <div className="bg-card border border-border rounded-2xl p-8">
-
           {/* Compliance Language */}
           <div className="mb-8 p-6 bg-muted rounded-xl">
             <div className="text-sm space-y-4">
@@ -85,8 +86,10 @@ export default function SMSOptIn() {
               </p>
               <p className="text-muted-foreground">
                 By completing this form, you give consent to{" "}
-                <span className="font-medium">"{config.smsBrand}"</span> to send SMS text messages
-                for <span className="font-medium">{config.useCase}</span> according to our{" "}
+                <span className="font-medium">"{config.smsBrand}"</span> to send
+                SMS text messages for{" "}
+                <span className="font-medium">{config.useCase}</span> according
+                to our{" "}
                 <Link
                   href="/terms"
                   className="text-foreground hover:underline font-medium"
@@ -103,15 +106,11 @@ export default function SMSOptIn() {
                 .
               </p>
               <p className="text-muted-foreground">
-                Message frequency varies. Standard message and data rates
-                may apply.
+                Message frequency varies. Standard message and data rates may
+                apply.
               </p>
-              <p className="text-muted-foreground">
-                {getHelpText()}.
-              </p>
-              <p className="text-muted-foreground">
-                {getStopText()}.
-              </p>
+              <p className="text-muted-foreground">{getHelpText()}.</p>
+              <p className="text-muted-foreground">{getStopText()}.</p>
             </div>
           </div>
 
@@ -138,7 +137,10 @@ export default function SMSOptIn() {
 
             {/* Full Name Field */}
             <div className="space-y-3">
-              <Label htmlFor="fullName" className="text-sm font-medium text-foreground">
+              <Label
+                htmlFor="fullName"
+                className="text-sm font-medium text-foreground"
+              >
                 Full Name
               </Label>
               <Input
@@ -155,7 +157,10 @@ export default function SMSOptIn() {
 
             {/* Phone Number Field */}
             <div className="space-y-3">
-              <Label htmlFor="phoneNumber" className="text-sm font-medium text-foreground">
+              <Label
+                htmlFor="phoneNumber"
+                className="text-sm font-medium text-foreground"
+              >
                 Phone Number
               </Label>
               <Input
@@ -172,7 +177,10 @@ export default function SMSOptIn() {
 
             {/* Email Field */}
             <div className="space-y-3">
-              <Label htmlFor="email" className="text-sm font-medium text-foreground">
+              <Label
+                htmlFor="email"
+                className="text-sm font-medium text-foreground"
+              >
                 Email Address
               </Label>
               <Input
