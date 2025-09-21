@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { config, formatFullAddress } from "../config";
 
@@ -16,10 +15,7 @@ export default function Home() {
               </span>
             </Link>
             <div className="hidden md:flex items-center space-x-8">
-              <Link
-                href="/"
-                className="text-foreground font-medium text-sm"
-              >
+              <Link href="/" className="text-foreground font-medium text-sm">
                 Home
               </Link>
               <Link
@@ -27,12 +23,6 @@ export default function Home() {
                 className="text-muted-foreground hover:text-foreground transition-colors text-sm"
               >
                 SMS Opt-In
-              </Link>
-              <Link
-                href="/sample-messages"
-                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-              >
-                Sample Messages
               </Link>
               <Link
                 href="/privacy-policy"
@@ -70,7 +60,11 @@ export default function Home() {
               </p>
             </div>
             <div className="pt-4">
-              <Button asChild size="lg" className="rounded-full px-8 h-12 text-base font-medium">
+              <Button
+                asChild
+                size="lg"
+                className="rounded-full px-8 h-12 text-base font-medium"
+              >
                 <Link href="/sms-optin">Subscribe to SMS Updates</Link>
               </Button>
             </div>
@@ -100,7 +94,9 @@ export default function Home() {
                 <p className="text-sm text-muted-foreground font-medium mb-1">
                   Industry
                 </p>
-                <p className="text-lg font-semibold text-foreground">{config.industry}</p>
+                <p className="text-lg font-semibold text-foreground">
+                  {config.industry}
+                </p>
               </div>
             </div>
 
@@ -150,7 +146,9 @@ export default function Home() {
                 <p className="text-sm text-muted-foreground font-medium mb-1">
                   Contact
                 </p>
-                <p className="text-lg font-semibold text-foreground">{config.phone}</p>
+                <p className="text-lg font-semibold text-foreground">
+                  {config.phone}
+                </p>
               </div>
             </div>
           </div>
@@ -164,7 +162,8 @@ export default function Home() {
                 Get in Touch
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Contact us for more information about our services and SMS updates.
+                Contact us for more information about our services and SMS
+                updates.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
@@ -180,9 +179,7 @@ export default function Home() {
                 <p className="text-sm font-medium text-muted-foreground">
                   Email
                 </p>
-                <p className="text-base text-foreground">
-                  {config.email}
-                </p>
+                <p className="text-base text-foreground">{config.email}</p>
               </div>
             </div>
             <div className="pt-4">
