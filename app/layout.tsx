@@ -13,16 +13,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Acme Solutions LLC - A2P 10DLC Compliant SMS Service",
-  description:
-    "Technology Solutions Provider committed to A2P 10DLC compliance. Subscribe to SMS updates for order notifications and promotional offers.",
+  title: "Reply Smart LLC",
+  description: "Text and Voice Communication for Real Estate Professionals",
   keywords:
     "A2P 10DLC, SMS compliance, technology solutions, business communications",
-  authors: [{ name: "Acme Solutions LLC" }],
+  authors: [{ name: "Smart Reply LLC" }],
   openGraph: {
-    title: "Acme Solutions LLC - A2P 10DLC Compliant SMS Service",
-    description:
-      "Technology Solutions Provider committed to A2P 10DLC compliance.",
+    title:
+      "Smart Reply LLC - Text and Voice Communication for Real Estate Professionals",
+    description: "Text and Voice Communication for Real Estate Professionals",
     type: "website",
     locale: "en_US",
   },

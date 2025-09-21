@@ -194,7 +194,7 @@ export default function SMSOptIn() {
               </li>
               <li>• Message frequency: {config.messageFrequency}</li>
               <li>• Standard message and data rates may apply</li>
-              <li>• For help, text "HELP" to {config.phone}</li>
+              <li>• For help, reply "HELP" to any message</li>
             </ul>
           </div>
         </div>
