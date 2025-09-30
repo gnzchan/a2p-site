@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 import { useState } from "react";
+import { toast, Toaster } from "sonner";
 import { config, formatFullAddress } from "../../config";
 
 export default function Contact() {
@@ -20,15 +21,36 @@ export default function Contact() {
     message: "",
     consent: false,
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.consent) {
-      alert("Please check the consent box to continue.");
+      toast.error("Please check the consent box to continue.");
       return;
     }
-    // Here you would typically send the data to your backend
-    alert("Thank you for your message! We will get back to you soon.");
+
+    setIsSubmitting(true);
+    toast.loading("Sending your message...");
+
+    // Simulate async behavior
+    setTimeout(() => {
+      toast.dismiss();
+      toast.success(
+        "Thank you for your message! We will get back to you soon."
+      );
+
+      // Clear the form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+        consent: false,
+      });
+      setIsSubmitting(false);
+    }, 3000);
   };
 
   const handleInputChange = (
@@ -337,9 +359,9 @@ export default function Contact() {
                   <Button
                     type="submit"
                     className="w-full h-12 rounded-full font-medium text-base"
-                    disabled={!formData.consent}
+                    disabled={!formData.consent || isSubmitting}
                   >
-                    Send Message
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </div>
               </form>
@@ -349,6 +371,7 @@ export default function Contact() {
       </main>
 
       <Footer />
+      <Toaster position="top-center" richColors />
     </div>
   );
 }

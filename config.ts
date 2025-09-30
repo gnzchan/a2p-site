@@ -63,7 +63,3 @@ Message frequency varies. Standard message and data rates may apply.
 ${getHelpText()}.
 ${getStopText()}.`;
 };
-
-export const getConsentCheckboxText = () => {
-  return `Check this box to consent to receiving SMS text messages from ${config.smsBrand}`;
-};
