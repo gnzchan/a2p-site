@@ -1,0 +1,192 @@
+A2P 10DLC COMPLIANCE GUIDELINE
+================================================================================
+
+REQUIRED PAGES
+• Homepage - business info, address, phone
+• SMS Opt-in Page - dedicated consent form
+• Contact Page - with opt-in option
+• Privacy Policy - A2P section required
+• Terms of Service - SMS terms section required
+
+OPT-IN FORM REQUIREMENTS
+• Fields: name, phone (validated), email
+• Consent checkbox: separate, unchecked by default, required to submit
+• Validation: prevent submission without consent
+• Error message: "Please check the consent box to continue"
+
+CONSENT LANGUAGE (on form)
+"I consent to receive SMS messages from [COMPANY] related to [PURPOSE].
+Message frequency varies. Message & data rates may apply. Reply STOP to
+unsubscribe, HELP for help. See our Terms of Service and Privacy Policy."
+
+• Must link to Terms and Privacy Policy
+• Cannot bundle SMS consent with other agreements
+
+MANDATORY DISCLOSURES (all opt-in forms)
+• Message frequency: "varies" or "based on use case" or specific number
+• Cost: "Message & data rates may apply"
+• STOP: "Reply STOP to unsubscribe" + phone number
+• HELP: "Reply HELP for help" + phone number
+• Links to Terms and Privacy Policy
+
+BUSINESS INFORMATION (visible on site)
+• Legal business name + type (LLC, Corp, etc.)
+• Complete physical address (street, city, state, zip)
+• Primary phone number (for HELP keyword)
+• Business email address
+• Display on: homepage, contact page, footer, legal docs
+
+PRIVACY POLICY - REQUIRED SECTIONS
+1. Information We Collect
+   - SMS subscription data, contact info, preferences
+
+2. SMS Text Message Service
+   - Specific use case description
+   - "Mobile information will NOT be shared with third parties for marketing"
+   - Message frequency, cost disclosure
+   - "Reply STOP to opt out" + "Text HELP to [PHONE]"
+
+3. Information Sharing
+   - "We do not sell, trade, or transfer personal information to third parties
+     for marketing purposes"
+
+4. A2P 10DLC Compliance (dedicated section)
+   - Compliance with A2P 10DLC and TCPA
+   - Practices: explicit opt-in, clear opt-out, transparent disclosures,
+     proper registration
+
+5. Contact Information
+   - Full business details (name, address, phone, email)
+
+6. Last Updated date
+
+TERMS OF SERVICE - REQUIRED SECTIONS
+1. SMS Text Message Service Terms
+   - "By providing your mobile number and checking the consent box, you
+     expressly consent to receive SMS from [COMPANY] for [USE CASE]"
+   - Message frequency, "Message & data rates may apply"
+   - "Carriers not liable for delayed/undelivered messages"
+   - "Text STOP to [PHONE] to opt out"
+   - "Text HELP to [PHONE] for support"
+   - "You will receive confirmation when you opt out"
+
+2. A2P 10DLC Compliance
+   - "Our SMS services comply with A2P 10DLC and TCPA regulations"
+   - Practices: explicit consent required, clear opt-out, consent records
+     maintained, messages only for stated purposes
+
+3. Privacy and Data Protection
+   - "We will never sell or share your mobile number with third parties for
+     marketing purposes"
+   - Reference Privacy Policy
+
+4. Contact Information + Governing Law
+5. Last Updated date
+
+TECHNICAL IMPLEMENTATION
+• Centralized config file for all business info (single source of truth)
+• Consent validation: check before submission, log timestamp
+• All pages use HTTPS
+• Consistent business info across all pages
+• Header with nav to legal pages
+• Footer with business info + legal links on every page
+
+CONFIG STRUCTURE (example)
+{
+  companyName: "Company LLC",
+  businessType: "LLC",
+  address: { street, city, state, zip, country },
+  phone: "555-123-4567",
+  email: "support@company.com",
+  smsBrand: "BrandName",
+  useCase: "Specific description of SMS purpose",
+  messageFrequency: "Based on the use case"
+}
+
+COMMON MISTAKES TO AVOID
+❌ Pre-checked consent boxes
+❌ Bundling SMS consent with other terms
+❌ Missing STOP/HELP keywords or phone number
+❌ No frequency/cost disclosure
+❌ Incomplete business address
+❌ Missing legal doc links (privacy and terms)
+❌ Inconsistent business info across pages
+❌ Form submits without consent
+❌ Using opt-out instead of opt-in
+❌ Vague consent language
+❌ Outdated legal docs
+
+IMPLEMENTATION PRIORITY
+PHASE 1 (Critical - required before collecting SMS opt-ins):
+1. Privacy Policy with A2P section
+2. Terms of Service with SMS terms
+3. Opt-in form with explicit consent checkbox
+4. All mandatory disclosures (frequency, cost, STOP, HELP)
+5. Complete business information displayed
+6. Links to legal docs from opt-in form
+
+PHASE 2 (Essential for full compliance):
+7. Form validation preventing submission without consent
+8. Consent logging with timestamps
+9. Homepage with business info
+10. Footer with legal links on all pages
+11. Centralized config management
+
+LAUNCH CHECKLIST
+Legal Docs:
+□ Privacy Policy with A2P section
+□ Terms with SMS section
+□ Current "Last Updated" dates
+□ Complete contact info in both
+□ "No third-party sharing" statements
+□ STOP/HELP in both
+
+Forms:
+□ Consent checkbox (unchecked default, required)
+□ All disclosures visible
+□ Terms/Privacy links
+□ Validation prevents submission without consent
+□ Error messages work
+
+Business Info:
+□ Legal name displayed
+□ Complete address on multiple pages
+□ Phone consistent everywhere
+□ Email visible and valid
+□ Business type stated
+
+Disclosures:
+□ Frequency disclosed
+□ Cost disclosed
+□ STOP instructions + phone
+□ HELP instructions + phone
+□ Use case clearly described
+
+Technical:
+□ HTTPS everywhere
+□ Form validation works
+□ Centralized config used
+□ Business info consistent across pages
+□ Mobile responsive
+
+REGULATORY COMPLIANCE
+• A2P 10DLC (Application-to-Person 10-Digit Long Code)
+• TCPA (Telephone Consumer Protection Act)
+• Register business with TCR (The Campaign Registry)
+• Complete 10DLC campaign registration
+• Get carrier approval
+
+KEY PRINCIPLES
+• Explicit opt-in only (never opt-out)
+• Keep consent separate from other terms
+• Use plain language
+• Never pre-check consent boxes
+• Display disclosures prominently
+• Never share phone numbers with third parties for marketing
+• Honor STOP requests immediately
+• Store consent records with timestamps
+• Keep legal docs current
+• Compliance is ongoing, not one-time
+
+Last Updated: November 2025
+================================================================================

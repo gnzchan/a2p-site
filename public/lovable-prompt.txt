@@ -1,0 +1,116 @@
+Create a Next.js A2P 10DLC compliant SMS opt-in website with the following structure:
+
+PAGES REQUIRED:
+1. Homepage (/) - Display business info (company name, type, industry, full address, phone, email)
+2. SMS Opt-in (/sms-optin) - Dedicated consent form
+3. Contact (/contact) - Contact form with optional SMS opt-in
+4. Privacy Policy (/privacy-policy) - With A2P compliance section
+5. Terms of Service (/terms) - With SMS terms section
+
+CENTRALIZED CONFIG (lib/config.ts):
+Export config object containing:
+- companyName, businessType, industry
+- address: {street, city, state, zip, country}
+- phone, email, domain
+- smsBrand, useCase, messageFrequency
+- legal: {state, lastUpdated}
+
+Helper functions: formatAddress(), formatFullAddress(), getHelpText(), getStopText(), getOptInLanguage()
+
+SMS OPT-IN FORM (app/sms-optin/page.tsx):
+Fields: name (required), phone (required, validated), email (required)
+Consent checkbox: disabled by default, required to submit
+Consent text: "I consent to receive SMS messages from [COMPANY] related to [PURPOSE]. Message frequency varies. Message & data rates may apply. Reply STOP to unsubscribe, HELP for help. See our Terms of Service and Privacy Policy."
+Include clickable links to /terms and /privacy-policy
+Additional disclosures section with: opt-out instructions, message frequency details, cost disclosure, help instructions
+Validation: prevent submission if consent unchecked, show error toast
+Use Sonner for toast notifications
+
+CONTACT FORM (app/contact/page.tsx):
+Fields: name, email, phone, subject, message
+Optional SMS consent checkbox (separate section)
+Consent text: "If you wish to receive SMS text messages from [COMPANY], please check the box below. By checking this box, you give consent to receive SMS for [USE CASE] according to our Terms and Conditions and Privacy Policy. Message frequency varies. Standard message and data rates may apply. For HELP, text [PHONE]. Text STOP to unsubscribe."
+Display business contact info prominently (address, phone, email)
+Form validation and toast notifications
+
+PRIVACY POLICY (app/privacy-policy/page.tsx):
+Sections:
+1. Information We Collect - SMS subscription data, contact info
+2. How We Use Your Information
+3. SMS Text Message Service - Use case, "Mobile information will NOT be shared with third parties for marketing", frequency, cost, STOP/HELP instructions with phone
+4. Information Sharing - "We do not sell, trade, or transfer personal information to third parties for marketing"
+5. A2P 10DLC Compliance - Compliance statement with A2P 10DLC and TCPA, list practices (explicit opt-in, clear opt-out, transparent disclosures, proper registration)
+6. Your Rights
+7. Data Security
+8. Contact Information - Full business details
+Display "Last Updated: [DATE]" at top
+
+TERMS OF SERVICE (app/terms/page.tsx):
+Sections:
+1. Acceptance of Terms
+2. SMS Text Message Service Terms - Consent statement "By providing your mobile phone number and checking the consent box, you expressly consent to receive SMS from [COMPANY] for [USE CASE]", frequency and charges, opt-out instructions "Text STOP to [PHONE] to opt out", help "Text HELP to [PHONE] for support", confirmation on opt-out
+3. A2P 10DLC Compliance - "Our SMS services comply with A2P 10DLC and TCPA regulations", list practices
+4. Use of Service
+5. Privacy and Data Protection - "We will never sell or share your mobile number with third parties for marketing", reference Privacy Policy
+6. Limitation of Liability
+7. Changes to Terms
+8. Contact Information - Full business details
+9. Governing Law - Jurisdiction
+Display "Last Updated: [DATE]" at top
+
+COMPONENTS:
+Header (components/header.tsx):
+- Site logo/name
+- Navigation: Home, SMS Opt-in, Contact, Privacy Policy, Terms
+- Mobile responsive with hamburger menu
+
+Footer (components/footer.tsx):
+- Company tagline: "Technology Solutions Provider committed to A2P 10DLC compliance"
+- Links: Privacy Policy, Terms of Service, Contact
+- Display on all pages
+
+TECHNICAL REQUIREMENTS:
+- Use Tailwind CSS for styling
+- Clean, professional design with good spacing
+- Mobile responsive
+- Forms use React useState for state management
+- Client-side validation (check consent checkbox before submission)
+- Toast notifications using Sonner library
+- All business info pulled from centralized config
+- HTTPS assumed (deployment handles this)
+- Consistent styling across all pages
+
+STYLING:
+- Modern, minimal design
+- Primary color scheme (blue/professional palette)
+- Card-based layouts for forms
+- Clear typography hierarchy
+- Readable font sizes
+- Prominent CTAs
+- Error states for form validation
+
+FORM VALIDATION LOGIC:
+```typescript
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  if (!formData.consent) {
+    toast.error("Please check the consent box to continue.");
+    return;
+  }
+  // Process form...
+  toast.success("Form submitted successfully!");
+};
+```
+
+KEY COMPLIANCE REQUIREMENTS:
+- Consent checkbox never pre-checked
+- All disclosures visible before consent
+- Links to legal docs on all forms
+- Business info consistent across all pages
+- STOP and HELP keywords with phone number
+- "Message frequency varies" or specific frequency
+- "Message & data rates may apply"
+- "No third-party sharing" statements in Privacy and Terms
+- Last Updated dates on legal docs
+
+Use TypeScript, App Router structure, and follow Next.js 14+ best practices.
