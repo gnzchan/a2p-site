@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { config } from "../config";
+import { config } from "../lib/config";
 
 interface NavigationProps {
   currentPage?: string;

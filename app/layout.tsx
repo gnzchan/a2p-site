@@ -1,44 +1,23 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { ReactNode } from "react";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import { Toaster } from "sonner";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
 
-export const metadata: Metadata = {
-  title: "Reply Smart LLC",
-  description: "Text and Voice Communication for Real Estate Professionals",
-  keywords:
-    "A2P 10DLC, SMS compliance, technology solutions, business communications",
-  authors: [{ name: "Reply Smart LLC" }],
-  openGraph: {
-    title:
-      "Reply Smart LLC - Text and Voice Communication for Real Estate Professionals",
-    description: "Text and Voice Communication for Real Estate Professionals",
-    type: "website",
-    locale: "en_US",
-  },
-};
+interface A2PLayoutProps {
+  children: ReactNode;
+}
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default async function A2PLayout({ children }: A2PLayoutProps) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <div className="bg-background flex min-h-screen flex-col">
+      <Header />
+      <main className="mx-auto w-full max-w-6xl flex-1 px-6 pt-24 pb-16 lg:px-8">
         {children}
-      </body>
-    </html>
+      </main>
+      <Footer />
+      <Toaster position="top-center" richColors />
+    </div>
   );
 }

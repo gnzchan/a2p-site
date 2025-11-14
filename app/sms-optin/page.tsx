@@ -1,15 +1,18 @@
 "use client";
 
-import { Footer } from "@/components/footer";
-import { Navigation } from "@/components/navigation";
+import { useState } from "react";
+
+import Link from "next/link";
+
+import { toast } from "sonner";
+
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Link from "next/link";
-import { useState } from "react";
-import { toast, Toaster } from "sonner";
-import { config, getHelpText, getStopText } from "../../config";
+
+import { config } from "@/lib/config";
 
 export default function SMSOptIn() {
   const [formData, setFormData] = useState({
@@ -30,14 +33,12 @@ export default function SMSOptIn() {
     setIsSubmitting(true);
     toast.loading("Processing your subscription...");
 
-    // Simulate async behavior
     setTimeout(() => {
       toast.dismiss();
       toast.success(
         `Thank you for subscribing! You will receive SMS messages from ${config.smsBrand}.`
       );
 
-      // Clear the form
       setFormData({
         fullName: "",
         phoneNumber: "",
@@ -57,40 +58,31 @@ export default function SMSOptIn() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation currentPage="/sms-optin" />
+    <div className="mx-auto max-w-3xl">
+      <div className="mb-12 text-center">
+        <h1 className="text-foreground mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+          Property Inquiry SMS Consent
+        </h1>
+        <p className="text-muted-foreground text-xl">{config.companyName}</p>
+      </div>
 
-      {/* Main Content */}
-      <main className="max-w-2xl mx-auto px-6 lg:px-8 pt-32 pb-20">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground mb-4">
-            Property Inquiry SMS Consent
-          </h1>
-          <p className="text-xl text-muted-foreground">
-            {config.companyName}
-          </p>
-        </div>
-
-        <div className="bg-card border border-border rounded-2xl p-8">
+      <Card className="border-border/50 shadow-lg">
+        <CardContent>
           {/* Compliance Language */}
-          <div className="mb-8 p-6 bg-muted rounded-xl">
-            <div className="text-sm space-y-4">
-              <p className="font-medium text-foreground">
+          <Card className="bg-muted/50 border-border/50 mb-8">
+            <CardContent className="p-4">
+              <p className="text-foreground text-sm font-medium">
                 To receive SMS messages from {config.companyName} about your
                 property inquiry or request for an offer, please complete this
                 form.
               </p>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
 
           {/* Opt-In Form */}
-          <form onSubmit={handleSubmit} className="space-y-8">
-            {/* Full Name Field */}
-            <div className="space-y-3">
-              <Label
-                htmlFor="fullName"
-                className="text-sm font-medium text-foreground"
-              >
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="fullName" className="text-sm font-medium">
                 Full Name
               </Label>
               <Input
@@ -101,16 +93,12 @@ export default function SMSOptIn() {
                 onChange={handleInputChange}
                 placeholder="Enter Your Full Name"
                 required
-                className="rounded-xl border-border bg-input h-12"
+                className="h-11"
               />
             </div>
 
-            {/* Phone Number Field */}
-            <div className="space-y-3">
-              <Label
-                htmlFor="phoneNumber"
-                className="text-sm font-medium text-foreground"
-              >
+            <div className="space-y-2">
+              <Label htmlFor="phoneNumber" className="text-sm font-medium">
                 Phone Number
               </Label>
               <Input
@@ -121,16 +109,12 @@ export default function SMSOptIn() {
                 onChange={handleInputChange}
                 placeholder="Enter Your Phone Number"
                 required
-                className="rounded-xl border-border bg-input h-12"
+                className="h-11"
               />
             </div>
 
-            {/* Email Field */}
-            <div className="space-y-3">
-              <Label
-                htmlFor="email"
-                className="text-sm font-medium text-foreground"
-              >
+            <div className="space-y-2">
+              <Label htmlFor="email" className="text-sm font-medium">
                 Email Address
               </Label>
               <Input
@@ -141,81 +125,82 @@ export default function SMSOptIn() {
                 onChange={handleInputChange}
                 placeholder="Enter Your Email Address"
                 required
-                className="rounded-xl border-border bg-input h-12"
+                className="h-11"
               />
             </div>
 
             {/* Consent Checkbox */}
-            <div className="flex items-start gap-3 bg-muted rounded-xl p-6">
-              <Checkbox
-                id="consent"
-                name="consent"
-                checked={formData.consent}
-                onCheckedChange={(checked) =>
-                  setFormData((prev) => ({ ...prev, consent: !!checked }))
-                }
-                className="mt-0.5 shrink-0 bg-white"
-              />
-              <Label
-                htmlFor="consent"
-                className="text-xs text-foreground  leading-relaxed cursor-pointer"
-              >
-                <span className="font-medium">
-                  I consent to receive SMS messages from {config.companyName}{" "}
-                  related to my property inquiry. Message frequency varies.
-                  Message & data rates may apply. Reply STOP to unsubscribe, HELP
-                  for help. See our{" "}
-                  <Link
-                    href="/terms"
-                    className="text-foreground hover:underline font-medium"
+            <Card className="bg-muted/50 border-border/50">
+              <CardContent className="p-4">
+                <div className="flex items-start gap-3">
+                  <Checkbox
+                    id="consent"
+                    name="consent"
+                    checked={formData.consent}
+                    onCheckedChange={(checked) =>
+                      setFormData((prev) => ({ ...prev, consent: !!checked }))
+                    }
+                    className="mt-0.5 shrink-0"
+                  />
+                  <Label
+                    htmlFor="consent"
+                    className="cursor-pointer text-xs leading-relaxed"
                   >
-                    Terms of Service
-                  </Link>{" "}
-                  and{" "}
-                  <Link
-                    href="/privacy-policy"
-                    className="text-foreground hover:underline font-medium"
-                  >
-                    Privacy Policy
-                  </Link>
-                  .
-                </span>
-              </Label>
-            </div>
+                    <span className="text-foreground font-medium">
+                      I consent to receive SMS messages from{" "}
+                      {config.companyName} related to my property inquiry.
+                      Message frequency varies. Message &amp; data rates may
+                      apply. Reply STOP to unsubscribe, HELP for help. See our{" "}
+                      <Link
+                        href="/terms"
+                        className="text-foreground font-medium hover:underline"
+                      >
+                        Terms of Service
+                      </Link>{" "}
+                      and{" "}
+                      <Link
+                        href="/privacy-policy"
+                        className="text-foreground font-medium hover:underline"
+                      >
+                        Privacy Policy
+                      </Link>
+                      .
+                    </span>
+                  </Label>
+                </div>
+              </CardContent>
+            </Card>
 
-            {/* Submit Button */}
-            <div className="pt-4">
-              <Button
-                type="submit"
-                className="w-full h-12 rounded-full font-medium text-base"
-                disabled={!formData.consent || isSubmitting}
-              >
-                {isSubmitting ? "Processing..." : "Confirm SMS Consent"}
-              </Button>
-            </div>
+            <Button
+              type="submit"
+              className="h-11 w-full rounded-full font-medium shadow-lg"
+              disabled={!formData.consent || isSubmitting}
+            >
+              {isSubmitting ? "Processing..." : "Confirm SMS Consent"}
+            </Button>
           </form>
 
           {/* Additional Information */}
-          <div className="mt-8 p-6 bg-muted/50 rounded-xl">
-            <h3 className="text-sm font-medium text-foreground mb-3">
-              Important Information
-            </h3>
-            <ul className="text-sm text-muted-foreground space-y-2">
-              <li>
-                • You can opt out at any time by replying "STOP" to any message
-              </li>
-              <li>
-                • Message frequency: Varies depending on your property inquiry
-              </li>
-              <li>• Standard message and data rates may apply</li>
-              <li>• For help, reply "HELP" to any message</li>
-            </ul>
-          </div>
-        </div>
-      </main>
-
-      <Footer />
-      <Toaster position="top-center" richColors />
+          <Card className="bg-muted/50 border-border/50 mt-8">
+            <CardContent className="p-4">
+              <h3 className="text-foreground mb-3 text-sm font-semibold">
+                Important Information
+              </h3>
+              <ul className="text-muted-foreground space-y-2 text-sm">
+                <li>
+                  • You can opt out at any time by replying &ldquo;STOP&rdquo;
+                  to any message
+                </li>
+                <li>
+                  • Message frequency: Varies depending on your property inquiry
+                </li>
+                <li>• Standard message and data rates may apply</li>
+                <li>• For help, reply &ldquo;HELP&rdquo; to any message</li>
+              </ul>
+            </CardContent>
+          </Card>
+        </CardContent>
+      </Card>
     </div>
   );
 }

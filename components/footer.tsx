@@ -1,42 +1,43 @@
-import Link from "next/link";
-import { config } from "../config";
+import Link from 'next/link';
+
+import { config } from '@/lib/a2p-config';
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-background">
-      <div className="max-w-6xl mx-auto py-12 px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+    <footer className="border-border bg-background border-t">
+      <div className="mx-auto max-w-6xl p-6 lg:px-8">
+        <div className="flex flex-col items-center justify-between space-y-6 md:flex-row md:space-y-0">
           <div className="text-center md:text-left">
-            <p className="text-sm font-medium text-foreground">
+            <p className="text-foreground text-sm font-medium">
               {config.companyName}
             </p>
-            <p className="text-sm text-muted-foreground mt-1">
+            <p className="text-muted-foreground mt-1 text-sm">
               Technology Solutions Provider committed to A2P 10DLC compliance.
             </p>
           </div>
           <div className="flex items-center space-x-6">
             <Link
               href="/privacy-policy"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="text-muted-foreground hover:text-foreground text-sm transition-colors"
             >
               Privacy
             </Link>
             <Link
               href="/terms"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="text-muted-foreground hover:text-foreground text-sm transition-colors"
             >
               Terms
             </Link>
             <Link
               href="/contact"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="text-muted-foreground hover:text-foreground text-sm transition-colors"
             >
               Contact
             </Link>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-border">
-          <p className="text-xs text-muted-foreground text-center">
+        <div className="mt-8">
+          <p className="text-muted-foreground text-center text-xs">
             &copy; 2024 {config.companyName}. All rights reserved.
           </p>
         </div>
