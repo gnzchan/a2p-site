@@ -2,6 +2,13 @@
 // Update this file to change business information across the entire site
 
 export const config = {
+  // Site Configuration
+  site: {
+    domain: "replysmart.ai",
+    title: "Reply Smart",
+    description: "Text and Voice Communication for Real Estate Professionals",
+  },
+
   // Business Identity
   companyName: "Reply Smart LLC",
   businessType: "LLC",
