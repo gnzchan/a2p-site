@@ -1,6 +1,6 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import { config } from '@/lib/a2p-config';
+import { config } from "@/lib/config";
 
 export function Footer() {
   return (

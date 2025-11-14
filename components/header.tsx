@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import Link from 'next/link';
+import Link from "next/link";
 
-import { Menu } from 'lucide-react';
+import { Menu } from "lucide-react";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 
-import { config } from '@/lib/a2p-config';
-import { cn } from '@/lib/utils';
+import { config } from "@/lib/config";
+import { cn } from "@/lib/utils";
 
 interface HeaderProps {
   currentPage?: string;
@@ -23,16 +23,16 @@ export function Header({ currentPage }: HeaderProps) {
       setIsScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
-    { href: '/', label: 'Home' },
-    { href: '/sms-optin', label: 'SMS Opt-In' },
-    { href: '/privacy-policy', label: 'Privacy' },
-    { href: '/terms', label: 'Terms' },
-    { href: '/contact', label: 'Contact' },
+    { href: "/", label: "Home" },
+    { href: "/sms-optin", label: "SMS Opt-In" },
+    { href: "/privacy-policy", label: "Privacy" },
+    { href: "/terms", label: "Terms" },
+    { href: "/contact", label: "Contact" },
   ];
 
   return (
@@ -40,10 +40,10 @@ export function Header({ currentPage }: HeaderProps) {
       <div className="mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">
         <nav
           className={cn(
-            'transition-all duration-300',
+            "transition-all duration-300",
             isScrolled
-              ? 'bg-background/80 border-border/50 rounded-2xl border shadow-lg shadow-black/5 backdrop-blur-xl'
-              : 'bg-transparent',
+              ? "bg-background/80 border-border/50 rounded-2xl border shadow-lg shadow-black/5 backdrop-blur-xl"
+              : "bg-transparent"
           )}
         >
           <div className="flex h-16 items-center justify-between px-6">
@@ -62,10 +62,10 @@ export function Header({ currentPage }: HeaderProps) {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    'rounded-full px-4 py-2 text-sm font-medium transition-all',
+                    "rounded-full px-4 py-2 text-sm font-medium transition-all",
                     currentPage === item.href
-                      ? 'bg-foreground text-background'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-muted/50',
+                      ? "bg-foreground text-background"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                   )}
                 >
                   {item.label}
