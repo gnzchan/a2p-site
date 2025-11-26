@@ -4,36 +4,36 @@
 export const config = {
   // Site Configuration
   site: {
-    domain: "replysmart.ai",
-    title: "Reply Smart",
+    domain: "a2pcompliantwebsite.com",
+    title: "A2P Compliant Website",
     description: "Text and Voice Communication for Real Estate Professionals",
   },
 
   // Business Identity
-  companyName: "Reply Smart LLC",
+  companyName: "A2P Compliant Website LLC",
   businessType: "LLC",
   industry: "Technology Solutions",
 
   // Contact Information
   address: {
-    street: "801 S Miami Ave 3410",
-    city: "Miami",
-    state: "NY",
-    zip: "33130",
+    street: "123 Main St",
+    city: "Anytown",
+    state: "CA",
+    zip: "12345",
     country: "USA",
   },
-  phone: "703-919-9426",
-  email: "support@replysmart.ai",
-  domain: "replysmart.ai",
+  phone: "(555) 123-4567",
+  email: "support@a2pcompliantwebsite.com",
+  domain: "a2pcompliantwebsite.com",
 
   // SMS Service Details
-  smsBrand: "Reply Smart",
-  useCase: "Text and Voice Communication for Real Estate Professionals",
+  smsBrand: "A2P Compliant Website",
+  useCase: "Text and Voice Communication for A2P Compliant Website",
   messageFrequency: "Based on the use case",
 
   // Legal Information
   legal: {
-    state: "Miami FL",
+    state: "CA",
     lastUpdated: "September 2025",
   },
 } as const;
