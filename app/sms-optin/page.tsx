@@ -11,6 +11,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 import { config } from "@/lib/config";
 
@@ -19,6 +20,7 @@ export default function SMSOptIn() {
     fullName: "",
     phoneNumber: "",
     email: "",
+    propertyDetails: "",
     consent: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -43,14 +45,18 @@ export default function SMSOptIn() {
         fullName: "",
         phoneNumber: "",
         email: "",
+        propertyDetails: "",
         consent: false,
       });
       setIsSubmitting(false);
     }, 3000);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
@@ -129,6 +135,22 @@ export default function SMSOptIn() {
               />
             </div>
 
+            <div className="space-y-2">
+              <Label htmlFor="propertyDetails" className="text-sm font-medium">
+                Property Details
+              </Label>
+              <Textarea
+                id="propertyDetails"
+                name="propertyDetails"
+                value={formData.propertyDetails}
+                onChange={handleInputChange}
+                placeholder="Enter your property address and any relevant details (e.g., 123 Main St, Austin, TX 78701 - 3 bed/2 bath single family home)"
+                required
+                rows={4}
+                className="resize-none"
+              />
+            </div>
+
             {/* Consent Checkbox */}
             <Card className="bg-muted/50 border-border/50">
               <CardContent className="p-4">
@@ -147,10 +169,13 @@ export default function SMSOptIn() {
                     className="cursor-pointer text-xs leading-relaxed"
                   >
                     <span className="text-foreground font-medium">
-                      I consent to receive SMS messages from{" "}
-                      {config.companyName} related to my property inquiry.
-                      Message frequency varies. Message &amp; data rates may
-                      apply. Reply STOP to unsubscribe, HELP for help. See our{" "}
+                      By checking this box and providing my phone number, I
+                      consent to receive SMS follow-up messages from{" "}
+                      {config.companyName} regarding my property inquiry,
+                      including requests for additional details, scheduling, and
+                      offer updates. Message frequency varies. Message &amp;
+                      data rates may apply. Reply STOP to opt out, HELP for
+                      assistance. See our{" "}
                       <Link
                         href="/terms"
                         className="text-foreground font-medium hover:underline"
@@ -188,14 +213,15 @@ export default function SMSOptIn() {
               </h3>
               <ul className="text-muted-foreground space-y-2 text-sm">
                 <li>
-                  • You can opt out at any time by replying &ldquo;STOP&rdquo;
-                  to any message
+                  • Reply STOP to any message to opt out at any time
                 </li>
                 <li>
-                  • Message frequency: Varies depending on your property inquiry
+                  • Reply HELP to any message for assistance
+                </li>
+                <li>
+                  • Message frequency varies based on your inquiry
                 </li>
                 <li>• Standard message and data rates may apply</li>
-                <li>• For help, reply &ldquo;HELP&rdquo; to any message</li>
               </ul>
             </CardContent>
           </Card>

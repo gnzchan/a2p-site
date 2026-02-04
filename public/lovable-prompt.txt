@@ -18,39 +18,38 @@ Export config object containing:
 Helper functions: formatAddress(), formatFullAddress(), getHelpText(), getStopText(), getOptInLanguage()
 
 SMS OPT-IN FORM (app/sms-optin/page.tsx):
-Fields: name (required), phone (required, validated), email (required)
+Fields: name (required), phone (required, validated), email (required), property details (required, textarea)
+Property details field: textarea with placeholder "Enter your property address and any relevant details (e.g., 123 Main St, Austin, TX 78701 - 3 bed/2 bath single family home)"
 Consent checkbox: disabled by default, required to submit
-Consent text: "I consent to receive SMS messages from [COMPANY] related to [PURPOSE]. Message frequency varies. Message & data rates may apply. Reply STOP to unsubscribe, HELP for help. See our Terms of Service and Privacy Policy."
+Consent text: "By checking this box and providing my phone number, I consent to receive SMS follow-up messages from [COMPANY] regarding my property inquiry, including requests for additional details, scheduling, and offer updates. Message frequency varies. Message & data rates may apply. Reply STOP to opt out, HELP for assistance. See our Terms of Service and Privacy Policy."
 Include clickable links to /terms and /privacy-policy
-Additional disclosures section with: opt-out instructions, message frequency details, cost disclosure, help instructions
+Additional disclosures section with: Reply STOP to opt out, Reply HELP for assistance, message frequency varies based on inquiry, standard rates apply
 Validation: prevent submission if consent unchecked, show error toast
 Use Sonner for toast notifications
 
 CONTACT FORM (app/contact/page.tsx):
 Fields: name, email, phone, subject, message
-Optional SMS consent checkbox (separate section)
-Consent text: "If you wish to receive SMS text messages from [COMPANY], please check the box below. By checking this box, you give consent to receive SMS for [USE CASE] according to our Terms and Conditions and Privacy Policy. Message frequency varies. Standard message and data rates may apply. For HELP, text [PHONE]. Text STOP to unsubscribe."
+Optional SMS consent checkbox (integrated in card)
+Consent text: "By checking this box and providing my phone number, I consent to receive SMS follow-up messages from [COMPANY] regarding property offers and real estate inquiries. Message frequency varies. Message & data rates may apply. Reply STOP to opt out, HELP for assistance. See our Terms of Service and Privacy Policy."
 Display business contact info prominently (address, phone, email)
 Form validation and toast notifications
 
 PRIVACY POLICY (app/privacy-policy/page.tsx):
 Sections:
-1. Information We Collect - SMS subscription data, contact info
+1. Information We Collect - SMS subscription data, contact info, property details
 2. How We Use Your Information
-3. SMS Text Message Service - Use case, "Mobile information will NOT be shared with third parties for marketing", frequency, cost, STOP/HELP instructions with phone
+3. SMS Text Message Service - "follow-up messages related to property inquiry, including requests for additional details, scheduling, and offer updates", "Mobile information will NOT be shared with third parties for marketing", frequency varies based on inquiry, cost disclosure, "Reply STOP to opt out, HELP for assistance"
 4. Information Sharing - "We do not sell, trade, or transfer personal information to third parties for marketing"
 5. A2P 10DLC Compliance - Compliance statement with A2P 10DLC and TCPA, list practices (explicit opt-in, clear opt-out, transparent disclosures, proper registration)
-6. Your Rights
-7. Data Security
-8. Contact Information - Full business details
+6. Contact Information - Full business details
 Display "Last Updated: [DATE]" at top
 
 TERMS OF SERVICE (app/terms/page.tsx):
 Sections:
 1. Acceptance of Terms
-2. SMS Text Message Service Terms - Consent statement "By providing your mobile phone number and checking the consent box, you expressly consent to receive SMS from [COMPANY] for [USE CASE]", frequency and charges, opt-out instructions "Text STOP to [PHONE] to opt out", help "Text HELP to [PHONE] for support", confirmation on opt-out
+2. SMS Text Message Service Terms - Consent statement "By checking the consent box and providing your mobile phone number, you expressly consent to receive SMS follow-up messages from [COMPANY] regarding your property inquiry, including requests for additional details, scheduling calls, and providing offer updates", frequency varies based on inquiry, charges may apply, opt-out "Reply STOP to any message to opt out", help "Reply HELP to any message for assistance", confirmation on opt-out
 3. A2P 10DLC Compliance - "Our SMS services comply with A2P 10DLC and TCPA regulations", list practices
-4. Use of Service
+4. Prohibited Uses
 5. Privacy and Data Protection - "We will never sell or share your mobile number with third parties for marketing", reference Privacy Policy
 6. Limitation of Liability
 7. Changes to Terms

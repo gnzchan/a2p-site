@@ -239,70 +239,52 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* SMS Opt-In Language */}
+                {/* SMS Consent Checkbox */}
                 <Card className="bg-muted/50 border-border/50">
                   <CardContent className="p-4">
-                    <div className="space-y-3 text-sm">
-                      <p className="text-foreground font-medium">
-                        If you wish to receive SMS text messages from{" "}
-                        {config.companyName}, please check the box below.
-                      </p>
-                      <p className="text-muted-foreground">
-                        By checking this box, you give consent to{" "}
-                        <span className="font-medium">
-                          &ldquo;{config.smsBrand}&rdquo;
-                        </span>{" "}
-                        to send SMS text messages for{" "}
-                        <span className="font-medium">{config.useCase}</span>{" "}
-                        according to our{" "}
-                        <Link
-                          href="/terms"
-                          className="text-foreground font-medium hover:underline"
-                        >
-                          Terms and Conditions
-                        </Link>{" "}
-                        and{" "}
-                        <Link
-                          href="/privacy-policy"
-                          className="text-foreground font-medium hover:underline"
-                        >
-                          Privacy Policy
-                        </Link>
-                        .
-                      </p>
-                      <p className="text-muted-foreground">
-                        Message frequency varies. Standard message and data
-                        rates may apply.
-                      </p>
-                      <p className="text-muted-foreground">
-                        For HELP, text {config.phone}.
-                      </p>
-                      <p className="text-muted-foreground">
-                        Text STOP to unsubscribe.
-                      </p>
+                    <div className="flex items-start space-x-3">
+                      <Checkbox
+                        id="consent"
+                        name="consent"
+                        checked={formData.consent}
+                        onCheckedChange={(checked) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            consent: !!checked,
+                          }))
+                        }
+                        className="mt-0.5 shrink-0"
+                      />
+                      <Label
+                        htmlFor="consent"
+                        className="cursor-pointer text-xs leading-relaxed"
+                      >
+                        <span className="text-foreground font-medium">
+                          By checking this box and providing my phone number, I
+                          consent to receive SMS follow-up messages from{" "}
+                          {config.companyName} regarding property offers and
+                          real estate inquiries. Message frequency varies.
+                          Message &amp; data rates may apply. Reply STOP to opt
+                          out, HELP for assistance. See our{" "}
+                          <Link
+                            href="/terms"
+                            className="text-foreground font-medium hover:underline"
+                          >
+                            Terms of Service
+                          </Link>{" "}
+                          and{" "}
+                          <Link
+                            href="/privacy-policy"
+                            className="text-foreground font-medium hover:underline"
+                          >
+                            Privacy Policy
+                          </Link>
+                          .
+                        </span>
+                      </Label>
                     </div>
                   </CardContent>
                 </Card>
-
-                {/* Consent Checkbox */}
-                <div className="flex items-start space-x-3">
-                  <Checkbox
-                    id="consent"
-                    name="consent"
-                    checked={formData.consent}
-                    onCheckedChange={(checked) =>
-                      setFormData((prev) => ({ ...prev, consent: !!checked }))
-                    }
-                    className="mt-1"
-                  />
-                  <Label
-                    htmlFor="consent"
-                    className="cursor-pointer text-sm leading-relaxed font-medium"
-                  >
-                    Check this box to consent to receiving SMS text messages
-                    from {config.smsBrand}
-                  </Label>
-                </div>
 
                 <Button
                   type="submit"

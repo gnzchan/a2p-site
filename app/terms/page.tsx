@@ -39,10 +39,11 @@ export default function Terms() {
                 Consent and Opt-In
               </h3>
               <p>
-                By providing your mobile phone number and checking the consent
-                box, you expressly consent to receive SMS text messages from
-                &ldquo;
-                {config.smsBrand}&rdquo; for {config.useCase}.
+                By checking the consent box and providing your mobile phone
+                number, you expressly consent to receive SMS follow-up messages
+                from {config.companyName} regarding your property inquiry,
+                including requests for additional details, scheduling calls, and
+                providing offer updates.
               </p>
 
               <h3 className="text-foreground text-lg font-medium">
@@ -60,8 +61,8 @@ export default function Terms() {
                 Opt-Out Instructions
               </h3>
               <ul className="ml-4 list-inside list-disc space-y-2">
-                <li>Text STOP to {config.phone} to opt out</li>
-                <li>Text HELP to {config.phone} for support</li>
+                <li>Reply STOP to any message to opt out</li>
+                <li>Reply HELP to any message for assistance</li>
                 <li>You may receive a confirmation message when you opt out</li>
               </ul>
             </div>

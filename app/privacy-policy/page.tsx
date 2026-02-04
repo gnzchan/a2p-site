@@ -68,14 +68,15 @@ export default function PrivacyPolicy() {
               </p>
               <p>When you subscribe to our SMS text message service:</p>
               <ul className="ml-4 list-inside list-disc space-y-2">
-                <li>We will send you messages related to {config.useCase}</li>
+                <li>
+                  We will send you follow-up messages related to your property
+                  inquiry, including requests for additional details,
+                  scheduling, and offer updates
+                </li>
                 <li>Message frequency: {config.messageFrequency}</li>
                 <li>Standard message and data rates may apply</li>
-                <li>
-                  You can opt out at any time by replying &ldquo;STOP&rdquo; to
-                  any message
-                </li>
-                <li>For help, text &ldquo;HELP&rdquo; to {config.phone}</li>
+                <li>Reply STOP to any message to opt out at any time</li>
+                <li>Reply HELP to any message for assistance</li>
               </ul>
             </div>
           </section>

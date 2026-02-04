@@ -28,8 +28,8 @@ export const config = {
 
   // SMS Service Details
   smsBrand: "A2P Compliant Website",
-  useCase: "Text and Voice Communication for A2P Compliant Website",
-  messageFrequency: "Based on the use case",
+  useCase: "follow-up messages regarding property inquiries, offers, and real estate services",
+  messageFrequency: "Varies based on your inquiry",
 
   // Legal Information
   legal: {
@@ -56,17 +56,5 @@ export const getStopText = () => {
 };
 
 export const getOptInLanguage = () => {
-  return `If you wish to receive SMS text messages from ${
-    config.companyName
-  }, please fill out this form.
-
-By completing this form, you give consent to "${
-    config.smsBrand
-  }" to send SMS text messages for ${
-    config.useCase
-  } according to our Terms and Conditions and Privacy Policy.
-
-Message frequency varies. Standard message and data rates may apply.
-${getHelpText()}.
-${getStopText()}.`;
+  return `By checking this box and providing my phone number, I consent to receive SMS follow-up messages from ${config.companyName} regarding my property inquiry, including requests for additional details, scheduling, and offer updates. Message frequency varies. Message & data rates may apply. Reply STOP to opt out, HELP for assistance. See our Terms of Service and Privacy Policy.`;
 };
