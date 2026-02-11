@@ -1,4 +1,4 @@
-Create a Next.js A2P 10DLC compliant SMS opt-in website for a "Customer Care" campaign type with the following structure:
+Create a Next.js A2P 10DLC compliant SMS opt-in website with the following structure:
 
 PAGES REQUIRED:
 1. Homepage (/) - Display business info (company name, type, industry, full address, phone, email)
@@ -12,7 +12,6 @@ Export config object containing:
 - companyName, businessType, industry
 - address: {street, city, state, zip, country}
 - phone, email, domain
-- campaignType ("Customer Care")
 - smsBrand, useCase, messageFrequency
 - legal: {state, lastUpdated}
 
@@ -84,7 +83,6 @@ Header (components/header.tsx):
 Footer (components/footer.tsx):
 - Company tagline: "Technology Solutions Provider committed to A2P 10DLC compliance"
 - Links: Privacy Policy, Terms of Service, Contact
-- Dynamic copyright year
 - Display on all pages
 
 TECHNICAL REQUIREMENTS:
@@ -121,7 +119,6 @@ const handleSubmit = async (e: React.FormEvent) => {
 ```
 
 KEY COMPLIANCE REQUIREMENTS:
-- Campaign type: Customer Care
 - Two separate consent checkboxes: (1) SMS consent, (2) Terms & Privacy agreement
 - Consent checkboxes never pre-checked
 - All disclosures visible before consent
@@ -132,6 +129,5 @@ KEY COMPLIANCE REQUIREMENTS:
 - "Message & data rates may apply"
 - "No third-party sharing" statements in Privacy and Terms
 - Last Updated dates on legal docs
-- Campaign registered as Customer Care type
 
 Use TypeScript, App Router structure, and follow Next.js 14+ best practices.
