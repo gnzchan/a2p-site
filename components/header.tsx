@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import Link from "next/link";
 
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
@@ -17,6 +17,7 @@ interface HeaderProps {
 
 export function Header({ currentPage }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,7 +42,7 @@ export function Header({ currentPage }: HeaderProps) {
         <nav
           className={cn(
             "transition-all duration-300",
-            isScrolled
+            isScrolled || isMobileMenuOpen
               ? "bg-background/80 border-border/50 rounded-2xl border shadow-lg shadow-black/5 backdrop-blur-xl"
               : "bg-transparent"
           )}
@@ -74,11 +75,42 @@ export function Header({ currentPage }: HeaderProps) {
             </div>
 
             <div className="md:hidden">
-              <Button variant="ghost" size="icon">
-                <Menu className="h-5 w-5" />
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                {isMobileMenuOpen ? (
+                  <X className="h-5 w-5" />
+                ) : (
+                  <Menu className="h-5 w-5" />
+                )}
               </Button>
             </div>
           </div>
+
+          {/* Mobile menu */}
+          {isMobileMenuOpen && (
+            <div className="border-border/50 border-t px-6 pb-4 md:hidden">
+              <div className="flex flex-col space-y-1 pt-2">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={cn(
+                      "rounded-xl px-4 py-2.5 text-sm font-medium transition-all",
+                      currentPage === item.href
+                        ? "bg-foreground text-background"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </nav>
       </div>
     </header>

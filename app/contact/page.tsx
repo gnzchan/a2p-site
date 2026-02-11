@@ -29,18 +29,17 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.consent) {
-      toast.error("Please check the consent box to continue.");
-      return;
-    }
 
     setIsSubmitting(true);
     toast.loading("Sending your message...");
 
     setTimeout(() => {
       toast.dismiss();
+      const smsNote = formData.consent
+        ? " You've also opted in to receive SMS updates."
+        : "";
       toast.success(
-        "Thank you for your message! We will get back to you soon."
+        `Thank you for your message! We will get back to you soon.${smsNote}`
       );
 
       setFormData({
@@ -239,9 +238,12 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* SMS Consent Checkbox */}
+                {/* Optional SMS Consent */}
                 <Card className="bg-muted/50 border-border/50">
                   <CardContent className="p-4">
+                    <p className="text-muted-foreground mb-3 text-xs font-medium">
+                      Optional: Opt in to SMS updates
+                    </p>
                     <div className="flex items-start space-x-3">
                       <Checkbox
                         id="consent"
@@ -289,7 +291,7 @@ export default function Contact() {
                 <Button
                   type="submit"
                   className="h-11 w-full rounded-full font-medium shadow-lg"
-                  disabled={!formData.consent || isSubmitting}
+                  disabled={isSubmitting}
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>

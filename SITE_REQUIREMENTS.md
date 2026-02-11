@@ -10,78 +10,71 @@
 
 ## Required Pages
 
-### 1. Homepage
+### 1. Homepage (`/`)
 
 - Business overview and branding
 - Contact information prominently displayed
 
-### 2. SMS Opt-In Page
+### 2. SMS Opt-In Page (`/sms-optin`)
 
 **Mandatory Opt-In Language:**
 
-```
-If you wish to receive SMS text messages from Acme Solutions, please fill out this form.
-
-By completing this form, you give consent to "Acme Alerts" to send SMS text messages for order updates and promotional offers according to our Terms and Conditions and Privacy Policy.
-
-Message frequency varies. Standard message and data rates may apply.
-For HELP, text (555) 123-4567.
-Text STOP to unsubscribe.
-
-☐ Check this box to consent to receiving SMS text messages from Acme Alerts
-```
+Consent checkbox with language covering:
+- Company name
+- SMS use case description
+- "Message frequency varies"
+- "Message & data rates may apply"
+- "Reply STOP to opt out, HELP for assistance"
+- Links to Terms of Service and Privacy Policy
 
 **Form Fields:**
 
-- Full Name (with person icon)
-- Phone Number (with mobile phone icon)
-- Email Address (with envelope icon)
-- Submit Button
+- Full Name (required)
+- Phone Number (required, validated)
+- Email Address (required)
+- Property Details (required, textarea)
+- Consent Checkbox (unchecked by default, required to submit)
 
-### 3. Privacy Policy
+### 3. Privacy Policy (`/privacy-policy`)
 
 - Data collection and usage
 - **Required**: "Mobile information will NOT be shared with third parties for marketing purposes"
+- A2P 10DLC Compliance section
 - Contact information for privacy concerns
+- Last Updated date
 
-### 4. Terms of Service
+### 4. Terms of Service (`/terms`)
 
 - SMS messaging terms
 - Opt-out rights
+- A2P 10DLC Compliance section
 - Service limitations
+- Last Updated date
 
-### 5. Sample Messages Page
+### 5. Contact Page (`/contact`)
 
-- Real SMS examples:
-  - "Hi! Your order #12345 has shipped. Track at acme.com/track. Reply STOP to unsubscribe."
-  - "Acme Solutions: 20% off your next purchase! Use code SAVE20. Reply STOP to unsubscribe."
-  - "Your appointment with Acme Solutions is tomorrow at 2 PM. Reply STOP to unsubscribe."
-- Include business name in each message (Acme Solutions)
-- Include "Reply STOP to unsubscribe" in each message
-- Show message frequency (1-3 messages per week)
-
-### 6. Contact Page
-
-- Complete business address (123 Business Ave, Suite 100, New York, NY 10001)
-- Phone number ((555) 123-4567)
-- Email address (support@acmesolutions.com)
+- Complete business information (company name, address, phone, email)
+- Contact form with optional SMS consent checkbox
+- Form submittable without SMS consent
 
 ## Compliance Requirements
 
 ### Opt-In Form Rules
 
-- **Multiple Forms**: If site has several contact forms, add opt-in language to EACH one
+- **SMS Opt-In page**: Consent checkbox required to submit
+- **Contact page**: SMS consent is optional (form submits without it)
 - **Placement**: Opt-in language must be right above/below the form collecting lead data
-- **Checkbox**: Must be disabled by default (unchecked)
+- **Checkbox**: Must be unchecked by default
 
 ### Required Disclosures
 
-1. Brand/Company name in initial message
+1. Brand/Company name
 2. Use case description
 3. "Message and data rates may apply"
 4. Message frequency disclosure
-5. Customer care info ("Text HELP for help")
-6. "Reply STOP to unsubscribe"
+5. Customer care info ("Reply HELP for assistance")
+6. "Reply STOP to opt out"
+7. Links to Terms of Service and Privacy Policy
 
 ## Business Information Required (Website Only)
 
@@ -89,39 +82,15 @@ Text STOP to unsubscribe.
 - Complete address (street, city, state, ZIP, country)
 - Business type (LLC, Corp, etc.)
 - Industry classification
-- Operating regions
 
 ## Design Requirements
 
-- Mobile responsive
+- Mobile responsive (including working mobile navigation menu)
 - Professional appearance
 - Clear navigation
 - Fast loading
 - Brand consistency
 
-## Data Required for Implementation
+## Configuration
 
-### Business Identity
-
-- **Company Name**: Acme Solutions LLC
-- **Business Address**: 123 Business Ave, Suite 100, New York, NY 10001
-- **Business Type**: LLC
-- **Industry**: Technology Solutions
-
-### Contact Information
-
-- **Phone Number**: (555) 123-4567
-- **Email Address**: support@acmesolutions.com
-- **Domain Name**: acmesolutions.com
-
-### SMS Service Details
-
-- **Brand/Campaign Name**: Acme Alerts
-- **Use Case**: Order updates and promotional offers
-- **Message Frequency**: 1-3 messages per week
-
-### Sample Messages
-
-- "Hi! Your order #12345 has shipped. Track at acme.com/track. Reply STOP to unsubscribe."
-- "Acme Solutions: 20% off your next purchase! Use code SAVE20. Reply STOP to unsubscribe."
-- "Your appointment with Acme Solutions is tomorrow at 2 PM. Reply STOP to unsubscribe."
+All business information is centralized in `lib/config.ts`. Update this file to customize the site for your business. See `public/guidelines.txt` for the full A2P 10DLC compliance checklist and `public/lovable-prompt.txt` for generating an equivalent frontend through Lovable.

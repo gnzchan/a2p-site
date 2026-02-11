@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     title,
     description,
   },
-  metadataBase: new URL("https://pulse.com"),
+  metadataBase: new URL(`https://${config.site.domain}`),
 };
 
 export default async function A2PLayout({

@@ -34,7 +34,7 @@ export const config = {
   // Legal Information
   legal: {
     state: "CA",
-    lastUpdated: "September 2025",
+    lastUpdated: "February 2025",
   },
 } as const;
 
