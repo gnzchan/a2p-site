@@ -21,14 +21,15 @@ export default function SMSOptIn() {
     phoneNumber: "",
     email: "",
     propertyDetails: "",
-    consent: false,
+    smsConsent: false,
+    termsConsent: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.consent) {
-      toast.error("Please check the consent box to continue.");
+    if (!formData.smsConsent || !formData.termsConsent) {
+      toast.error("Please check both consent boxes to continue.");
       return;
     }
 
@@ -46,7 +47,8 @@ export default function SMSOptIn() {
         phoneNumber: "",
         email: "",
         propertyDetails: "",
-        consent: false,
+        smsConsent: false,
+        termsConsent: false,
       });
       setIsSubmitting(false);
     }, 3000);
@@ -151,21 +153,23 @@ export default function SMSOptIn() {
               />
             </div>
 
-            {/* Consent Checkbox */}
+            {/* SMS Consent Checkbox */}
             <Card className="bg-muted/50 border-border/50">
               <CardContent className="p-4">
                 <div className="flex items-start gap-3">
                   <Checkbox
-                    id="consent"
-                    name="consent"
-                    checked={formData.consent}
+                    id="smsConsent"
+                    checked={formData.smsConsent}
                     onCheckedChange={(checked) =>
-                      setFormData((prev) => ({ ...prev, consent: !!checked }))
+                      setFormData((prev) => ({
+                        ...prev,
+                        smsConsent: !!checked,
+                      }))
                     }
                     className="mt-0.5 shrink-0"
                   />
                   <Label
-                    htmlFor="consent"
+                    htmlFor="smsConsent"
                     className="cursor-pointer text-xs leading-relaxed"
                   >
                     <span className="text-foreground font-medium">
@@ -175,7 +179,34 @@ export default function SMSOptIn() {
                       including requests for additional details, scheduling, and
                       offer updates. Message frequency varies. Message &amp;
                       data rates may apply. Reply STOP to opt out, HELP for
-                      assistance. See our{" "}
+                      assistance.
+                    </span>
+                  </Label>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Terms & Privacy Consent Checkbox */}
+            <Card className="bg-muted/50 border-border/50">
+              <CardContent className="p-4">
+                <div className="flex items-start gap-3">
+                  <Checkbox
+                    id="termsConsent"
+                    checked={formData.termsConsent}
+                    onCheckedChange={(checked) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        termsConsent: !!checked,
+                      }))
+                    }
+                    className="mt-0.5 shrink-0"
+                  />
+                  <Label
+                    htmlFor="termsConsent"
+                    className="cursor-pointer text-xs leading-relaxed"
+                  >
+                    <span className="text-foreground font-medium">
+                      I have read and agree to the{" "}
                       <Link
                         href="/terms"
                         className="text-foreground font-medium hover:underline"
@@ -199,7 +230,9 @@ export default function SMSOptIn() {
             <Button
               type="submit"
               className="h-11 w-full rounded-full font-medium shadow-lg"
-              disabled={!formData.consent || isSubmitting}
+              disabled={
+                !formData.smsConsent || !formData.termsConsent || isSubmitting
+              }
             >
               {isSubmitting ? "Processing..." : "Confirm SMS Consent"}
             </Button>

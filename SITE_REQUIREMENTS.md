@@ -1,5 +1,9 @@
 # A2P 10DLC Compliance Website Requirements
 
+## Campaign Type: Customer Care
+
+This site template is configured for the **Customer Care** A2P 10DLC campaign type. SMS messages are limited to customer service purposes (appointment confirmations, scheduling updates, property inquiry follow-ups, customer support). No marketing or promotional messaging.
+
 ## Deployment Requirements (Not Site Development)
 
 - **HTTPS**: Site must use `https://` protocol (deployment configuration)
@@ -17,15 +21,10 @@
 
 ### 2. SMS Opt-In Page (`/sms-optin`)
 
-**Mandatory Opt-In Language:**
+**Two separate consent checkboxes (both required to submit):**
 
-Consent checkbox with language covering:
-- Company name
-- SMS use case description
-- "Message frequency varies"
-- "Message & data rates may apply"
-- "Reply STOP to opt out, HELP for assistance"
-- Links to Terms of Service and Privacy Policy
+1. **SMS Consent** — consent to receive customer service SMS messages (unchecked by default)
+2. **Terms & Privacy** — agreement to Terms of Service and Privacy Policy (unchecked by default)
 
 **Form Fields:**
 
@@ -33,7 +32,6 @@ Consent checkbox with language covering:
 - Phone Number (required, validated)
 - Email Address (required)
 - Property Details (required, textarea)
-- Consent Checkbox (unchecked by default, required to submit)
 
 ### 3. Privacy Policy (`/privacy-policy`)
 
@@ -45,7 +43,7 @@ Consent checkbox with language covering:
 
 ### 4. Terms of Service (`/terms`)
 
-- SMS messaging terms
+- SMS messaging terms (customer service focus)
 - Opt-out rights
 - A2P 10DLC Compliance section
 - Service limitations
@@ -54,27 +52,27 @@ Consent checkbox with language covering:
 ### 5. Contact Page (`/contact`)
 
 - Complete business information (company name, address, phone, email)
-- Contact form with optional SMS consent checkbox
-- Form submittable without SMS consent
+- Contact form with optional SMS consent (2 checkboxes, both optional)
+- Form submittable without checking either consent box
 
 ## Compliance Requirements
 
-### Opt-In Form Rules
+### Consent Checkbox Rules
 
-- **SMS Opt-In page**: Consent checkbox required to submit
-- **Contact page**: SMS consent is optional (form submits without it)
-- **Placement**: Opt-in language must be right above/below the form collecting lead data
-- **Checkbox**: Must be unchecked by default
+- **SMS Opt-In page**: Both checkboxes required to submit
+- **Contact page**: Both checkboxes optional (form submits without them)
+- **Checkboxes**: Must be unchecked by default
+- **SMS consent and Terms/Privacy are separate** — never bundled into one checkbox
 
 ### Required Disclosures
 
 1. Brand/Company name
-2. Use case description
+2. Use case description (customer service, not marketing)
 3. "Message and data rates may apply"
 4. Message frequency disclosure
 5. Customer care info ("Reply HELP for assistance")
 6. "Reply STOP to opt out"
-7. Links to Terms of Service and Privacy Policy
+7. Links to Terms of Service and Privacy Policy (in Terms checkbox)
 
 ## Business Information Required (Website Only)
 

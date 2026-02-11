@@ -55,6 +55,10 @@ export const getStopText = () => {
   return "Text STOP to unsubscribe";
 };
 
-export const getOptInLanguage = () => {
-  return `By checking this box and providing my phone number, I consent to receive SMS follow-up messages from ${config.companyName} regarding my property inquiry, including requests for additional details, scheduling, and offer updates. Message frequency varies. Message & data rates may apply. Reply STOP to opt out, HELP for assistance. See our Terms of Service and Privacy Policy.`;
+export const getSmsConsentLanguage = () => {
+  return `By checking this box and providing my phone number, I consent to receive SMS follow-up messages from ${config.companyName} regarding my property inquiry, including requests for additional details, scheduling, and offer updates. Message frequency varies. Message & data rates may apply. Reply STOP to opt out, HELP for assistance.`;
+};
+
+export const getTermsConsentLanguage = () => {
+  return `I have read and agree to the Terms of Service and Privacy Policy.`;
 };

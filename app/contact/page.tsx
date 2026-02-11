@@ -23,7 +23,8 @@ export default function Contact() {
     phone: "",
     subject: "",
     message: "",
-    consent: false,
+    smsConsent: false,
+    termsConsent: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -35,7 +36,7 @@ export default function Contact() {
 
     setTimeout(() => {
       toast.dismiss();
-      const smsNote = formData.consent
+      const smsNote = formData.smsConsent
         ? " You've also opted in to receive SMS updates."
         : "";
       toast.success(
@@ -48,7 +49,8 @@ export default function Contact() {
         phone: "",
         subject: "",
         message: "",
-        consent: false,
+        smsConsent: false,
+        termsConsent: false,
       });
       setIsSubmitting(false);
     }, 3000);
@@ -244,46 +246,68 @@ export default function Contact() {
                     <p className="text-muted-foreground mb-3 text-xs font-medium">
                       Optional: Opt in to SMS updates
                     </p>
-                    <div className="flex items-start space-x-3">
-                      <Checkbox
-                        id="consent"
-                        name="consent"
-                        checked={formData.consent}
-                        onCheckedChange={(checked) =>
-                          setFormData((prev) => ({
-                            ...prev,
-                            consent: !!checked,
-                          }))
-                        }
-                        className="mt-0.5 shrink-0"
-                      />
-                      <Label
-                        htmlFor="consent"
-                        className="cursor-pointer text-xs leading-relaxed"
-                      >
-                        <span className="text-foreground font-medium">
-                          By checking this box and providing my phone number, I
-                          consent to receive SMS follow-up messages from{" "}
-                          {config.companyName} regarding property offers and
-                          real estate inquiries. Message frequency varies.
-                          Message &amp; data rates may apply. Reply STOP to opt
-                          out, HELP for assistance. See our{" "}
-                          <Link
-                            href="/terms"
-                            className="text-foreground font-medium hover:underline"
-                          >
-                            Terms of Service
-                          </Link>{" "}
-                          and{" "}
-                          <Link
-                            href="/privacy-policy"
-                            className="text-foreground font-medium hover:underline"
-                          >
-                            Privacy Policy
-                          </Link>
-                          .
-                        </span>
-                      </Label>
+                    <div className="space-y-4">
+                      <div className="flex items-start space-x-3">
+                        <Checkbox
+                          id="smsConsent"
+                          checked={formData.smsConsent}
+                          onCheckedChange={(checked) =>
+                            setFormData((prev) => ({
+                              ...prev,
+                              smsConsent: !!checked,
+                            }))
+                          }
+                          className="mt-0.5 shrink-0"
+                        />
+                        <Label
+                          htmlFor="smsConsent"
+                          className="cursor-pointer text-xs leading-relaxed"
+                        >
+                          <span className="text-foreground font-medium">
+                            By checking this box and providing my phone number, I
+                            consent to receive SMS follow-up messages from{" "}
+                            {config.companyName} regarding property offers and
+                            real estate inquiries. Message frequency varies.
+                            Message &amp; data rates may apply. Reply STOP to
+                            opt out, HELP for assistance.
+                          </span>
+                        </Label>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <Checkbox
+                          id="termsConsent"
+                          checked={formData.termsConsent}
+                          onCheckedChange={(checked) =>
+                            setFormData((prev) => ({
+                              ...prev,
+                              termsConsent: !!checked,
+                            }))
+                          }
+                          className="mt-0.5 shrink-0"
+                        />
+                        <Label
+                          htmlFor="termsConsent"
+                          className="cursor-pointer text-xs leading-relaxed"
+                        >
+                          <span className="text-foreground font-medium">
+                            I have read and agree to the{" "}
+                            <Link
+                              href="/terms"
+                              className="text-foreground font-medium hover:underline"
+                            >
+                              Terms of Service
+                            </Link>{" "}
+                            and{" "}
+                            <Link
+                              href="/privacy-policy"
+                              className="text-foreground font-medium hover:underline"
+                            >
+                              Privacy Policy
+                            </Link>
+                            .
+                          </span>
+                        </Label>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>

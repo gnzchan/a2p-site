@@ -39,7 +39,7 @@ export default function Terms() {
                 Consent and Opt-In
               </h3>
               <p>
-                By checking the consent box and providing your mobile phone
+                By checking the SMS consent box and providing your mobile phone
                 number, you expressly consent to receive SMS follow-up messages
                 from {config.companyName} regarding your property inquiry,
                 including requests for additional details, scheduling calls, and
