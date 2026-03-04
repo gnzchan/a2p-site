@@ -24,10 +24,10 @@ Property details field: textarea with placeholder "Enter your property address a
 TWO SEPARATE CONSENT CHECKBOXES (both required to submit):
 
 Checkbox 1 - SMS Consent (unchecked by default):
-"By checking this box and providing my phone number, I consent to receive SMS follow-up messages from [COMPANY] regarding my property inquiry, including requests for additional details, scheduling, and offer updates. Message frequency varies. Message & data rates may apply. Reply STOP to opt out, HELP for assistance."
+"By checking, you are allowing to receive transactional/informational SMS communications regarding account notifications, customer care, etc, from [COMPANY]. Messages frequency may vary, Message and data rates may apply, reply HELP for help or STOP to opt-out."
 
 Checkbox 2 - Terms & Privacy (unchecked by default):
-"I have read and agree to the Terms of Service and Privacy Policy."
+"By checking, I accept Terms of Service & Privacy Policy."
 Include clickable links to /terms and /privacy-policy
 
 Additional disclosures section with: Reply STOP to opt out, Reply HELP for assistance, message frequency varies based on inquiry, standard rates apply
@@ -40,10 +40,10 @@ Fields: name, email, phone, subject, message
 TWO OPTIONAL SMS CONSENT CHECKBOXES (inside a card labeled "Optional: Opt in to SMS updates"):
 
 Checkbox 1 - SMS Consent (unchecked by default):
-"By checking this box and providing my phone number, I consent to receive SMS follow-up messages from [COMPANY] regarding property offers and real estate inquiries. Message frequency varies. Message & data rates may apply. Reply STOP to opt out, HELP for assistance."
+"By checking, you are allowing to receive transactional/informational SMS communications regarding account notifications, customer care, etc, from [COMPANY]. Messages frequency may vary, Message and data rates may apply, reply HELP for help or STOP to opt-out."
 
 Checkbox 2 - Terms & Privacy (unchecked by default):
-"I have read and agree to the Terms of Service and Privacy Policy."
+"By checking, I accept Terms of Service & Privacy Policy."
 Include clickable links to /terms and /privacy-policy
 
 Display business contact info prominently (address, phone, email)

@@ -15,9 +15,12 @@ OPT-IN FORM REQUIREMENTS
 • Error message: "Please check the consent box to continue"
 
 CONSENT LANGUAGE (on form)
-"I consent to receive SMS messages from [COMPANY] related to [PURPOSE].
-Message frequency varies. Message & data rates may apply. Reply STOP to
-unsubscribe, HELP for help. See our Terms of Service and Privacy Policy."
+SMS Consent: "By checking, you are allowing to receive transactional/informational
+SMS communications regarding account notifications, customer care, etc, from
+[COMPANY]. Messages frequency may vary, Message and data rates may apply, reply
+HELP for help or STOP to opt-out."
+
+Terms Consent: "By checking, I accept Terms of Service & Privacy Policy."
 
 • Must link to Terms and Privacy Policy
 • Cannot bundle SMS consent with other agreements
