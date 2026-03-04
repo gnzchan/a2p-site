@@ -173,13 +173,12 @@ export default function SMSOptIn() {
                     className="cursor-pointer text-xs leading-relaxed"
                   >
                     <span className="text-foreground font-medium">
-                      By checking this box and providing my phone number, I
-                      consent to receive SMS follow-up messages from{" "}
-                      {config.companyName} regarding my property inquiry,
-                      including requests for additional details, scheduling, and
-                      offer updates. Message frequency varies. Message &amp;
-                      data rates may apply. Reply STOP to opt out, HELP for
-                      assistance.
+                      By checking, you are allowing to receive
+                      transactional/informational SMS communications regarding
+                      account notifications, customer care, etc, from{" "}
+                      {config.companyName}. Messages frequency may vary, Message
+                      and data rates may apply, reply HELP for help or STOP to
+                      opt-out.
                     </span>
                   </Label>
                 </div>
@@ -206,14 +205,14 @@ export default function SMSOptIn() {
                     className="cursor-pointer text-xs leading-relaxed"
                   >
                     <span className="text-foreground font-medium">
-                      I have read and agree to the{" "}
+                      By checking, I accept{" "}
                       <Link
                         href="/terms"
                         className="text-foreground font-medium hover:underline"
                       >
                         Terms of Service
                       </Link>{" "}
-                      and{" "}
+                      &amp;{" "}
                       <Link
                         href="/privacy-policy"
                         className="text-foreground font-medium hover:underline"
