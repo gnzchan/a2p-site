@@ -56,9 +56,9 @@ export const getStopText = () => {
 };
 
 export const getSmsConsentLanguage = () => {
-  return `By checking this box and providing my phone number, I consent to receive SMS follow-up messages from ${config.companyName} regarding my property inquiry, including requests for additional details, scheduling, and offer updates. Message frequency varies. Message & data rates may apply. Reply STOP to opt out, HELP for assistance.`;
+  return `By checking, you are allowing to receive transactional/informational SMS communications regarding account notifications, customer care, etc, from ${config.companyName}. Messages frequency may vary, Message and data rates may apply, reply HELP for help or STOP to opt-out.`;
 };
 
 export const getTermsConsentLanguage = () => {
-  return `I have read and agree to the Terms of Service and Privacy Policy.`;
+  return `By checking, I accept Terms of Service & Privacy Policy.`;
 };
