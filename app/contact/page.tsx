@@ -264,12 +264,12 @@ export default function Contact() {
                           className="cursor-pointer text-xs leading-relaxed"
                         >
                           <span className="text-foreground font-medium">
-                            By checking, you are allowing to receive
-                            transactional/informational SMS communications
-                            regarding account notifications, customer care, etc,
-                            from {config.companyName}. Messages frequency may
-                            vary, Message and data rates may apply, reply HELP
-                            for help or STOP to opt-out.
+                            By checking, you consent to receive SMS messages from{" "}
+                            {config.companyName} related to your property inquiry,
+                            including requests for additional details, scheduling,
+                            and offer updates related to your submission. Message
+                            frequency may vary. Message and data rates may apply.
+                            Reply HELP for help or STOP to opt-out.
                           </span>
                         </Label>
                       </div>
@@ -317,7 +317,7 @@ export default function Contact() {
                   className="h-11 w-full rounded-full font-medium shadow-lg"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? "Sending..." : "Send Message"}
+                  {isSubmitting ? "Submitting..." : "Submit"}
                 </Button>
               </form>
             </CardContent>

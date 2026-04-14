@@ -24,7 +24,7 @@ Property details field: textarea with placeholder "Enter your property address a
 TWO SEPARATE CONSENT CHECKBOXES (both required to submit):
 
 Checkbox 1 - SMS Consent (unchecked by default):
-"By checking, you are allowing to receive transactional/informational SMS communications regarding account notifications, customer care, etc, from [COMPANY]. Messages frequency may vary, Message and data rates may apply, reply HELP for help or STOP to opt-out."
+"By checking, you consent to receive SMS messages from [COMPANY] related to your property inquiry, including requests for additional details, scheduling, and offer updates related to your submission. Message frequency may vary. Message and data rates may apply. Reply HELP for help or STOP to opt-out."
 
 Checkbox 2 - Terms & Privacy (unchecked by default):
 "By checking, I accept Terms of Service & Privacy Policy."
@@ -40,7 +40,7 @@ Fields: name, email, phone, subject, message
 TWO OPTIONAL SMS CONSENT CHECKBOXES (inside a card labeled "Optional: Opt in to SMS updates"):
 
 Checkbox 1 - SMS Consent (unchecked by default):
-"By checking, you are allowing to receive transactional/informational SMS communications regarding account notifications, customer care, etc, from [COMPANY]. Messages frequency may vary, Message and data rates may apply, reply HELP for help or STOP to opt-out."
+"By checking, you consent to receive SMS messages from [COMPANY] related to your property inquiry, including requests for additional details, scheduling, and offer updates related to your submission. Message frequency may vary. Message and data rates may apply. Reply HELP for help or STOP to opt-out."
 
 Checkbox 2 - Terms & Privacy (unchecked by default):
 "By checking, I accept Terms of Service & Privacy Policy."
