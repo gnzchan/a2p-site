@@ -1,8 +1,17 @@
 # A2P 10DLC Compliance Website Requirements
 
-## Campaign Type: Customer Care
+This template supports two A2P 10DLC campaign types — pick one via `useCase` in `lib/config.ts`:
 
-This site template is configured for the **Customer Care** A2P 10DLC campaign type. SMS messages are limited to customer service purposes (appointment confirmations, scheduling updates, property inquiry follow-ups, customer support). No marketing or promotional messaging.
+- **`CUSTOMER_CARE`** — Customer Care campaign. Customer-service-only SMS (appointment confirmations, scheduling updates, property inquiry follow-ups, support). No marketing or promotional messaging. Single SMS consent on `/contact`, plus a standalone `/sms-optin` page for explicit opt-ins.
+- **`LOW_VOLUME`** — Low Volume Mixed campaign (Twilio's "Low Volume Mixed"). Sends BOTH transactional/customer care SMS AND marketing/promotional SMS to opted-in users. Dual consent (transactional + marketing) on `/contact`. No standalone `/sms-optin` page (route redirects to `/contact`).
+
+The active use case is set at the top of `lib/config.ts`:
+
+```ts
+useCase: "LOW_VOLUME" as "CUSTOMER_CARE" | "LOW_VOLUME"
+```
+
+The site renders the correct opt-in flow, navigation, and consent language automatically based on this flag.
 
 ## Deployment Requirements (Not Site Development)
 
@@ -19,7 +28,26 @@ This site template is configured for the **Customer Care** A2P 10DLC campaign ty
 - Business overview and branding
 - Contact information prominently displayed
 
-### 2. SMS Opt-In Page (`/sms-optin`)
+### 2. Contact (`/contact`) — Primary opt-in destination
+
+**Form fields:** name, email, phone, subject, message (matching the schema both use cases share).
+
+**Consent checkboxes — `CUSTOMER_CARE` mode:**
+
+1. **SMS Consent** — single, optional checkbox covering customer-service SMS (unchecked by default).
+2. **Terms & Privacy** — agreement to Terms and Privacy Policy (unchecked by default).
+
+Form is submittable without checking either consent box.
+
+**Consent checkboxes — `LOW_VOLUME` mode:**
+
+1. **Transactional / Customer Care Consent** — optional, unchecked by default.
+2. **Marketing / Promotional Consent** — optional, unchecked by default. Includes the TCPA-required "Consent is not a condition of purchase." disclosure.
+3. **Terms & Privacy** — agreement to Terms and Privacy Policy.
+
+Form is submittable without checking any consent box.
+
+### 3. SMS Opt-In (`/sms-optin`) — `CUSTOMER_CARE` only
 
 **Two separate consent checkboxes (both required to submit):**
 
@@ -33,46 +61,46 @@ This site template is configured for the **Customer Care** A2P 10DLC campaign ty
 - Email Address (required)
 - Property Details (required, textarea)
 
-### 3. Privacy Policy (`/privacy-policy`)
+In `LOW_VOLUME` mode this route redirects to `/contact`. The "SMS Opt-In" navigation link is also hidden from the header.
+
+### 4. Privacy Policy (`/privacy-policy`)
 
 - Data collection and usage
 - **Required**: "Mobile information will NOT be shared with third parties for marketing purposes"
 - A2P 10DLC Compliance section
+  - In `LOW_VOLUME` mode: covers both transactional and marketing SMS, separated by consent
 - Contact information for privacy concerns
 - Last Updated date
 
-### 4. Terms of Service (`/terms`)
+### 5. Terms of Service (`/terms`)
 
-- SMS messaging terms (customer service focus)
+- SMS messaging terms
+  - `CUSTOMER_CARE`: customer-service focus
+  - `LOW_VOLUME`: covers both transactional and marketing, with explicit mention of separate consents and the "Consent is not a condition of purchase" requirement on marketing
 - Opt-out rights
 - A2P 10DLC Compliance section
 - Service limitations
 - Last Updated date
 
-### 5. Contact Page (`/contact`)
-
-- Complete business information (company name, address, phone, email)
-- Contact form with optional SMS consent (2 checkboxes, both optional)
-- Form submittable without checking either consent box
-
 ## Compliance Requirements
 
 ### Consent Checkbox Rules
 
-- **SMS Opt-In page**: Both checkboxes required to submit
-- **Contact page**: Both checkboxes optional (form submits without them)
-- **Checkboxes**: Must be unchecked by default
-- **SMS consent and Terms/Privacy are separate** — never bundled into one checkbox
+- **Checkboxes must be unchecked by default**, regardless of mode.
+- **SMS consent and Terms/Privacy are separate** — never bundled.
+- **`LOW_VOLUME` only**: transactional and marketing consents must be **separate** checkboxes (never bundled).
+- Submit button text reads "Submit" in both modes.
 
 ### Required Disclosures
 
 1. Brand/Company name
-2. Use case description (customer service, not marketing)
+2. Use case description (customer service for `CUSTOMER_CARE`; both transactional and marketing categories for `LOW_VOLUME`)
 3. "Message and data rates may apply"
 4. Message frequency disclosure
 5. Customer care info ("Reply HELP for assistance")
 6. "Reply STOP to opt out"
 7. Links to Terms of Service and Privacy Policy (in Terms checkbox)
+8. **`LOW_VOLUME` only**: "Consent is not a condition of purchase." on the marketing checkbox.
 
 ## Business Information Required (Website Only)
 
@@ -91,4 +119,11 @@ This site template is configured for the **Customer Care** A2P 10DLC campaign ty
 
 ## Configuration
 
-All business information is centralized in `lib/config.ts`. Update this file to customize the site for your business. See `public/guidelines.txt` for the full A2P 10DLC compliance checklist and `public/lovable-prompt.txt` for generating an equivalent frontend through Lovable.
+All business information is centralized in `lib/config.ts`. Update this file to customize the site for your business.
+
+For Lovable-based site generation, two prompt variants are provided:
+
+- `public/lovable-prompt-customer-care.txt` + `public/guidelines-customer-care.txt` — generate a customer-care site.
+- `public/lovable-prompt-lvm.txt` + `public/guidelines-lvm.txt` — generate a Low Volume Mixed site.
+
+Pick the pair matching your campaign use case.
