@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { toast } from "sonner";
 
@@ -13,9 +14,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-import { config } from "@/lib/config";
+import { config, isLvm } from "@/lib/config";
 
 export default function SMSOptIn() {
+  const router = useRouter();
+  const lvm = isLvm();
   const [formData, setFormData] = useState({
     fullName: "",
     phoneNumber: "",
@@ -25,6 +28,17 @@ export default function SMSOptIn() {
     termsConsent: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Low Volume Mixed campaigns route all opt-ins through /contact.
+  useEffect(() => {
+    if (lvm) {
+      router.replace("/contact");
+    }
+  }, [lvm, router]);
+
+  if (lvm) {
+    return null;
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

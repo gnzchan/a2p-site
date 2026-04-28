@@ -8,7 +8,7 @@ import { Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
-import { config } from "@/lib/config";
+import { config, isLvm } from "@/lib/config";
 import { cn } from "@/lib/utils";
 
 interface HeaderProps {
@@ -30,7 +30,7 @@ export function Header({ currentPage }: HeaderProps) {
 
   const navItems = [
     { href: "/", label: "Home" },
-    { href: "/sms-optin", label: "SMS Opt-In" },
+    ...(isLvm() ? [] : [{ href: "/sms-optin", label: "SMS Opt-In" }]),
     { href: "/privacy-policy", label: "Privacy" },
     { href: "/terms", label: "Terms" },
     { href: "/contact", label: "Contact" },

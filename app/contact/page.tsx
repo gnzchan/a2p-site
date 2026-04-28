@@ -14,9 +14,16 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-import { config, formatFullAddress } from "@/lib/config";
+import {
+  config,
+  formatFullAddress,
+  getMarketingConsentLanguage,
+  getTransactionalConsentLanguage,
+  isLvm,
+} from "@/lib/config";
 
 export default function Contact() {
+  const lvm = isLvm();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,6 +31,8 @@ export default function Contact() {
     subject: "",
     message: "",
     smsConsent: false,
+    transactionalConsent: false,
+    marketingConsent: false,
     termsConsent: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -31,16 +40,26 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (lvm && !formData.termsConsent) {
+      toast.error(
+        "Please accept the Terms of Service and Privacy Policy to continue.",
+      );
+      return;
+    }
+
     setIsSubmitting(true);
     toast.loading("Sending your message...");
 
     setTimeout(() => {
       toast.dismiss();
-      const smsNote = formData.smsConsent
+      const optedIn = lvm
+        ? formData.transactionalConsent || formData.marketingConsent
+        : formData.smsConsent;
+      const smsNote = optedIn
         ? " You've also opted in to receive SMS updates."
         : "";
       toast.success(
-        `Thank you for your message! We will get back to you soon.${smsNote}`
+        `Thank you for your message! We will get back to you soon.${smsNote}`,
       );
 
       setFormData({
@@ -50,6 +69,8 @@ export default function Contact() {
         subject: "",
         message: "",
         smsConsent: false,
+        transactionalConsent: false,
+        marketingConsent: false,
         termsConsent: false,
       });
       setIsSubmitting(false);
@@ -57,7 +78,7 @@ export default function Contact() {
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value, type } = e.target;
     const checked = (e.target as HTMLInputElement).checked;
@@ -240,39 +261,87 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* Optional SMS Consent */}
+                {/* SMS Consent (use-case-aware) */}
                 <Card className="bg-muted/50 border-border/50">
                   <CardContent className="p-4">
                     <p className="text-muted-foreground mb-3 text-xs font-medium">
                       Optional: Opt in to SMS updates
                     </p>
                     <div className="space-y-4">
-                      <div className="flex items-start space-x-3">
-                        <Checkbox
-                          id="smsConsent"
-                          checked={formData.smsConsent}
-                          onCheckedChange={(checked) =>
-                            setFormData((prev) => ({
-                              ...prev,
-                              smsConsent: !!checked,
-                            }))
-                          }
-                          className="mt-0.5 shrink-0"
-                        />
-                        <Label
-                          htmlFor="smsConsent"
-                          className="cursor-pointer text-xs leading-relaxed"
-                        >
-                          <span className="text-foreground font-medium">
-                            By checking, you consent to receive SMS messages from{" "}
-                            {config.companyName} related to your property inquiry,
-                            including requests for additional details, scheduling,
-                            and offer updates related to your submission. Message
-                            frequency may vary. Message and data rates may apply.
-                            Reply HELP for help or STOP to opt-out.
-                          </span>
-                        </Label>
-                      </div>
+                      {lvm ? (
+                        <>
+                          <div className="flex items-start space-x-3">
+                            <Checkbox
+                              id="transactionalConsent"
+                              checked={formData.transactionalConsent}
+                              onCheckedChange={(checked) =>
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  transactionalConsent: !!checked,
+                                }))
+                              }
+                              className="mt-0.5 shrink-0"
+                            />
+                            <Label
+                              htmlFor="transactionalConsent"
+                              className="cursor-pointer text-xs leading-relaxed"
+                            >
+                              <span className="text-foreground font-medium">
+                                {getTransactionalConsentLanguage()}
+                              </span>
+                            </Label>
+                          </div>
+                          <div className="flex items-start space-x-3">
+                            <Checkbox
+                              id="marketingConsent"
+                              checked={formData.marketingConsent}
+                              onCheckedChange={(checked) =>
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  marketingConsent: !!checked,
+                                }))
+                              }
+                              className="mt-0.5 shrink-0"
+                            />
+                            <Label
+                              htmlFor="marketingConsent"
+                              className="cursor-pointer text-xs leading-relaxed"
+                            >
+                              <span className="text-foreground font-medium">
+                                {getMarketingConsentLanguage()}
+                              </span>
+                            </Label>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="flex items-start space-x-3">
+                          <Checkbox
+                            id="smsConsent"
+                            checked={formData.smsConsent}
+                            onCheckedChange={(checked) =>
+                              setFormData((prev) => ({
+                                ...prev,
+                                smsConsent: !!checked,
+                              }))
+                            }
+                            className="mt-0.5 shrink-0"
+                          />
+                          <Label
+                            htmlFor="smsConsent"
+                            className="cursor-pointer text-xs leading-relaxed"
+                          >
+                            <span className="text-foreground font-medium">
+                              By checking, you consent to receive SMS messages
+                              from {config.companyName} related to your property
+                              inquiry, including requests for additional
+                              details, scheduling, and offer updates related to
+                              your submission. Message frequency may vary.
+                              Message and data rates may apply. Reply HELP for
+                              help or STOP to opt-out.
+                            </span>
+                          </Label>
+                        </div>
+                      )}
                       <div className="flex items-start space-x-3">
                         <Checkbox
                           id="termsConsent"
@@ -320,6 +389,22 @@ export default function Contact() {
                   {isSubmitting ? "Submitting..." : "Submit"}
                 </Button>
               </form>
+
+              {lvm && (
+                <Card className="bg-muted/50 border-border/50 mt-8">
+                  <CardContent className="p-4">
+                    <h3 className="text-foreground mb-3 text-sm font-semibold">
+                      Important Information
+                    </h3>
+                    <ul className="text-muted-foreground space-y-2 text-sm">
+                      <li>• Reply STOP to any message to opt out at any time</li>
+                      <li>• Reply HELP to any message for assistance</li>
+                      <li>• Message frequency varies based on your inquiry</li>
+                      <li>• Standard message and data rates may apply</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              )}
             </CardContent>
           </Card>
         </div>
