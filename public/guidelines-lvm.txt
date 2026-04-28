@@ -1,0 +1,203 @@
+A2P 10DLC COMPLIANCE GUIDELINE — LOW VOLUME MIXED (LVM)
+================================================================================
+
+CAMPAIGN TYPE
+Low Volume Mixed. Sends BOTH transactional/customer care SMS AND marketing/
+promotional SMS to opted-in users. Lower volume caps than Standard, less
+aggressive carrier filtering, easier brand vetting.
+
+REQUIRED PAGES
+• Homepage - business info, address, phone
+• Contact Page - PRIMARY opt-in destination (form with dual SMS consent)
+• Privacy Policy - A2P section covering both transactional and marketing
+• Terms of Service - SMS terms section covering both transactional and marketing
+
+DO NOT INCLUDE
+• Standalone SMS opt-in page. LVM submissions list /contact as the sole opt-in
+  destination.
+
+OPT-IN FORM REQUIREMENTS (on /contact)
+• Fields: name, email, phone (validated), subject, message
+• Three separate consent checkboxes, all unchecked by default:
+  1. Transactional / customer care SMS consent
+  2. Marketing / promotional SMS consent
+  3. Terms of Service & Privacy Policy agreement
+• Form submittable without any consent box checked (user can just send a message)
+• Submit button text MUST read "Submit"
+
+CONSENT LANGUAGE (LVM)
+
+Transactional / Informational / Customer Care:
+"By checking this box, you agree to receive transactional, informational, and
+customer care text messages from [COMPANY] at the number provided. Message
+frequency may vary. Message and data rates may apply. Reply STOP to opt out
+and HELP for help."
+
+Marketing / Promotional:
+"By checking this box, you agree to receive marketing and promotional text
+messages from [COMPANY] at the number provided. Message frequency may vary.
+Message and data rates may apply. Reply STOP to opt out and HELP for help.
+Consent is not a condition of purchase."
+
+Terms Consent:
+"By checking, I accept Terms of Service & Privacy Policy."
+
+• Must link to Terms and Privacy Policy
+• Cannot bundle SMS consent with terms (kept as three separate checkboxes)
+• Cannot bundle transactional consent with marketing consent (must be separate)
+
+MANDATORY DISCLOSURES (each SMS consent checkbox)
+• Message frequency: "varies" or "based on use case" or specific number
+• Cost: "Message & data rates may apply"
+• STOP: "Reply STOP to opt out"
+• HELP: "Reply HELP for help"
+• On marketing checkbox only: "Consent is not a condition of purchase."
+• Links to Terms and Privacy Policy on the terms consent
+
+BUSINESS INFORMATION (visible on site)
+• Legal business name + type (LLC, Corp, etc.)
+• Complete physical address (street, city, state, zip)
+• Primary phone number (for HELP keyword)
+• Business email address — must match site domain
+• Display on: homepage, contact page, footer, legal docs
+
+PRIVACY POLICY - REQUIRED SECTIONS
+1. Information We Collect
+   - SMS subscription data, separated by transactional vs marketing consent
+   - Contact info, property details
+2. SMS Text Message Service
+   - Describe BOTH categories: transactional/customer care AND marketing/promotional
+   - "Mobile information will NOT be shared with third parties for marketing"
+   - Message frequency, cost disclosure
+   - "Reply STOP to opt out" + "Text HELP for assistance"
+3. Information Sharing
+   - "We do not sell, trade, or transfer personal information to third parties
+     for marketing purposes"
+4. A2P 10DLC Compliance (dedicated section)
+   - Compliance with A2P 10DLC and TCPA
+   - Registered under Low Volume Mixed use case
+   - Practices: separate explicit opt-in per message category, clear opt-out,
+     transparent disclosures, proper registration
+5. Contact Information
+   - Full business details (name, address, phone, email)
+6. Last Updated date
+
+TERMS OF SERVICE - REQUIRED SECTIONS
+1. SMS Text Message Service Terms
+   - Both categories described
+   - "By checking the transactional SMS consent box, you expressly consent to
+     receive transactional, informational, and customer care SMS from [COMPANY].
+     By checking the marketing SMS consent box, you expressly consent to receive
+     marketing and promotional SMS from [COMPANY]. Consent to marketing is not
+     a condition of any purchase or service."
+   - Message frequency, "Message & data rates may apply"
+   - "Carriers not liable for delayed/undelivered messages"
+   - "Text STOP to opt out"
+   - "Text HELP for support"
+   - "You will receive confirmation when you opt out"
+2. A2P 10DLC Compliance
+   - "Our SMS services comply with A2P 10DLC and TCPA regulations and are
+     registered under the Low Volume Mixed use case"
+   - Practices: explicit consent required per category, clear opt-out, consent
+     records maintained, messages only for stated purposes
+3. Privacy and Data Protection
+   - "We will never sell or share your mobile number with third parties for
+     marketing purposes"
+   - Reference Privacy Policy
+4. Contact Information + Governing Law
+5. Last Updated date
+
+TECHNICAL IMPLEMENTATION
+• Centralized config file with `useCase: "LOW_VOLUME"` flag
+• Consent validation: log timestamp per checkbox checked
+• All pages use HTTPS
+• Consistent business info across all pages
+• Header with nav to legal pages (NO link to /sms-optin — page does not exist)
+• Footer with business info + legal links on every page
+
+CONFIG STRUCTURE (LVM example)
+{
+  companyName: "Company LLC",
+  businessType: "LLC",
+  address: { street, city, state, zip, country },
+  phone: "555-123-4567",
+  email: "support@company.com",
+  smsBrand: "BrandName",
+  useCase: "LOW_VOLUME",
+  messageFrequency: "Varies based on your inquiry"
+}
+
+COMMON MISTAKES TO AVOID
+- Pre-checked consent boxes
+- Bundling transactional and marketing consents into one checkbox
+- Bundling SMS consent with terms agreement
+- Missing "Consent is not a condition of purchase" on the marketing checkbox
+- Submit button labelled anything other than "Submit"
+- Including a standalone SMS opt-in page (LVM uses /contact only)
+- Missing STOP/HELP keywords on either SMS consent
+- Missing frequency/cost disclosure on either SMS consent
+- Incomplete business address
+- Missing legal doc links on the terms consent
+- Inconsistent business info across pages
+- Vague consent language
+
+LAUNCH CHECKLIST (LVM)
+Legal Docs:
+- Privacy Policy with A2P section covering BOTH transactional and marketing
+- Terms with SMS section covering BOTH transactional and marketing
+- Current "Last Updated" dates
+- Complete contact info in both
+- "No third-party sharing" statements
+- STOP/HELP in both
+
+Forms (/contact only):
+- Three checkboxes (transactional, marketing, terms) — all unchecked by default
+- All disclosures visible
+- "Consent is not a condition of purchase" on marketing
+- Terms/Privacy links on terms consent
+- Submit button text reads "Submit"
+- No standalone /sms-optin route
+
+Business Info:
+- Legal name displayed
+- Complete address on multiple pages
+- Phone consistent everywhere
+- Email visible, matches site domain
+- Business type stated
+
+Disclosures (each SMS consent):
+- Frequency disclosed
+- Cost disclosed
+- STOP instructions
+- HELP instructions
+- Use case clearly described
+
+Technical:
+- HTTPS everywhere
+- Centralized config used with useCase: "LOW_VOLUME"
+- Business info consistent across pages
+- Mobile responsive
+
+REGULATORY COMPLIANCE
+- A2P 10DLC (Application-to-Person 10-Digit Long Code)
+- TCPA (Telephone Consumer Protection Act)
+- Register business with TCR (The Campaign Registry)
+- Complete 10DLC campaign registration as Low Volume Mixed use case
+- Get carrier approval
+
+KEY PRINCIPLES (LVM)
+- Explicit opt-in only, per message category (transactional and marketing
+  collected separately)
+- Keep consent separate from other terms
+- Marketing consent must include "Consent is not a condition of purchase"
+- Use plain language
+- Never pre-check consent boxes
+- Display disclosures prominently
+- Never share phone numbers with third parties for marketing
+- Honor STOP requests immediately
+- Store consent records with timestamps, including which categories were opted in
+- Keep legal docs current
+- Compliance is ongoing, not one-time
+
+Last Updated: April 2026
+================================================================================
